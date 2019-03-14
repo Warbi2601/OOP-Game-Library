@@ -32,6 +32,11 @@ User* Application::GetCurrentUser() const
 	return currentUser;
 }
 
+List<Account*> Application::GetAccounts() const
+{
+	return accounts;
+}
+
 Store& Application::GetStore()
 {
 	return store;

@@ -10,6 +10,7 @@ class Player : public User
 	public:
 		Player(const std::string&, const std::string&, const std::string&);
 		~Player();
-		List<LibraryItem*> library;
+		List<LibraryItem*> GetLibrary() const;
 	private:
+		List<LibraryItem*> library;
 };
