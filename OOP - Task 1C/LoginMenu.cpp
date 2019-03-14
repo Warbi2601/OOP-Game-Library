@@ -11,7 +11,7 @@ void LoginMenu::OutputOptions()
 {
 	for (int i = 0; i < 3; i++) //app->GetCurrentAccount()->users)
 	{
-		Option(i, app->GetCurrentAccount()->users[i]->GetUsername());
+		Option(i, app->GetCurrentAccount()->GetUsers()[i]->GetUsername());
 	}
 }
 
