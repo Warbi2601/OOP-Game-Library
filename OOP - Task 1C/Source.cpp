@@ -8,6 +8,8 @@
 #include "Utils.h"
 #include "Date.h"
 
+#include "MainMenu.h"
+
 // TODO: Remove from global scope once menu system is integrated
 Application app;
 
@@ -271,6 +273,6 @@ void main()
 	createHardcodedTestData();
 
 	// TODO: app.Load();
-	mainMenu();
+	MainMenu("Smoke", &app);
 	// TODO: app.Save();
 }
