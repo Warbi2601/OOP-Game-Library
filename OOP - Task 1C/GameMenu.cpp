@@ -9,7 +9,6 @@ GameMenu::GameMenu(const std::string& title, Application * app, Game* game) : Me
 
 void GameMenu::OutputOptions()
 {
-	Line()
 	Option('B', "Buy game");
 }
 
