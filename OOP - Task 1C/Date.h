@@ -9,7 +9,7 @@ public:
 	Date(const int&, const int&, const int&);
 	Date(const Date&);
 
-	// Destrutcor -----
+	//Destructor not needed because no heap memory
 	
 	//Getters
 	Date getDate();
