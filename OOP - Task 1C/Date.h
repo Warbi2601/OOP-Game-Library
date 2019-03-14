@@ -8,6 +8,7 @@ public:
 	//Constructors
 	Date(const int&, const int&, const int&);
 	Date(const Date&);
+	Date(const string&);
 
 	//Destructor not needed because no heap memory
 	
