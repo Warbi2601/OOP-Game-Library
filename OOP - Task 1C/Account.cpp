@@ -16,3 +16,13 @@ List<User*> Account::GetUsers() const
 {
 	return users;
 }
+
+std::string Account::GetEmail() const
+{
+	return email;
+}
+
+std::string Account::GetPassword() const
+{
+	return password;
+}
