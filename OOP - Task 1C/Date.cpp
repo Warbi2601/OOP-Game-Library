@@ -1,8 +1,13 @@
 #include <iostream>
+#include <time.h>
 #include <sstream>
 #include <iomanip>
+#include <conio.h>
 #include <ctime>
+#include <assert.h>
+#include <vector>
 #include "Date.h"
+
 
 using namespace std;
 
@@ -21,6 +26,28 @@ Date::Date(const int& d, const int& m, const int& y) //Don't need initialisation
 Date::Date(const Date& date) : day(date.day), month(date.month), year(date.year)
 {
 	//Shouldn't need to recheck the max/min days/months
+}
+
+Date::Date(const string& str)
+{
+	string strDay = str.substr(0, 2);
+	string strMonth = str.substr(3, 2);
+	string strYear = str.substr(6, 4);
+
+	int dayNum, monthNum, yearNum;
+
+	istringstream dayStream(strDay);
+	dayStream >> dayNum;
+
+	istringstream monthStream(strMonth);
+	monthStream >> monthNum;
+
+	istringstream yearStream(strYear);
+	yearStream >> yearNum;
+
+	this->day = dayNum;
+	this->month = monthNum;
+	this->year = yearNum;
 }
 
 #pragma endregion
@@ -152,5 +179,11 @@ ostream& operator<<(ostream& os, Date* datePointer)
 	os << datePointer->ToString(*datePointer);
 	return os;
 }
+
+//istream& operator>>(istream& is, Date& output)
+//{
+//	getline(is, output, '/');
+//	return is;
+//}
 
 #pragma endregion

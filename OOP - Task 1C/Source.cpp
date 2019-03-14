@@ -50,17 +50,6 @@ void createHardcodedTestData()
 char showMainMenuAndGetUserChoice()
 {
 	system("CLS");
-
-	////TEST
-	//Date date(1, 4, 1996);
-
-	//date.setMonth(2);
-	//date.setDay(30);
-	//date.setYear(2010);
-	//std::cout << &date;
-
-	std::cout << '\n';
-	std::cout << &Date::CurrentDate();
 	std::cout << "                    \n";
 	std::cout << "  -= GAME LIBRARY =-\n";
 	std::cout << "                    \n";
