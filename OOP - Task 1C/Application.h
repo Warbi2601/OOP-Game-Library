@@ -16,6 +16,7 @@ class Application
 		Account* GetCurrentAccount() const;
 		User* GetCurrentUser() const;
 		List<Account*> GetAccounts() const;
+		void AddAccount(Account * account);
 
 		Store& GetStore();
 

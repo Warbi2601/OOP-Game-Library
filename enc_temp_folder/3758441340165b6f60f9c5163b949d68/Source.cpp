@@ -29,6 +29,7 @@ void createHardcodedTestData()
 	Player* u2 = new Player("Bob", "password", "2018-09-19");
 	Player* u3 = new Player("Charlie", "password", "2018-09-24");
 
+
 	// List of games
 	List<Game*> games = app.GetStore().GetGames();
 
