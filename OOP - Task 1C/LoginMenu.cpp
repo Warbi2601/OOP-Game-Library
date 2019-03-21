@@ -11,7 +11,7 @@ void LoginMenu::OutputOptions()
 {
 	for (int i = 0; i < 3; i++) //app->GetCurrentAccount()->users)
 	{
-		Option(i, app->GetCurrentAccount()->users[i]->GetUsername());
+		Option(i, app->GetCurrentAccount()->GetUsers()[i]->GetUsername());
 	}
 }
 
@@ -46,6 +46,12 @@ bool LoginMenu::HandleChoice(char choice)
 				// notice the if - this only works if somebody is logged in
 			}
 		} break;
+	}
+
+	int choiceAsInt = choice - '0';
+	if (choiceAsInt <= 9 && choiceAsInt >= 0)
+	{
+
 	}
 
 	return false;
