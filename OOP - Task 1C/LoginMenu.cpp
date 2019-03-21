@@ -48,5 +48,12 @@ bool LoginMenu::HandleChoice(char choice)
 		} break;
 	}
 
+	int choiceAsInt = choice - '0';
+	if (choiceAsInt <= 9 || choiceAsInt >= 0)
+	{
+
+	}
+	
+
 	return false;
 }
