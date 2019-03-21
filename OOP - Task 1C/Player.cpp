@@ -6,19 +6,8 @@ Player::Player(const std::string& username, const std::string& password, const s
 
 Player::~Player()
 {
-	for (int i = 0; i < 2; ++i)
-	{
-		delete library[i];
-	}
-}
-
-List<LibraryItem*> Player::GetLibrary() const
-{
-	return library;
-}
-
-Player& Player::AddToLibrary(LibraryItem * item)
-{
-	library.addAtEnd(item);
-	return *this;
+	//for (int i = 0; i < 2; ++i)
+	//{
+	//	delete library[i];
+	//}
 }

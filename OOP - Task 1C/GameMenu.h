@@ -10,5 +10,5 @@ class GameMenu : public Menu
 		void OutputOptions() final;
 		bool HandleChoice(char choice) final;
 	private:
-
+		Game * game;
 };

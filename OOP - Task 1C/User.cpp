@@ -17,3 +17,14 @@ const std::string & User::GetPassword() const
 {
 	return password;
 }
+
+List<LibraryItem*> User::GetLibrary() const
+{
+	return library;
+}
+
+Player& User::AddToLibrary(LibraryItem * item)
+{
+	library.addAtEnd(item);
+	return *this;
+}
