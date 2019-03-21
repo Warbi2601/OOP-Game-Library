@@ -1,9 +1,4 @@
 #include "Application.h"
-#include <iostream>
-#include <sstream>
-#include <fstream>
-
-using namespace std;
 
 Application::Application() : currentAccount(nullptr), currentUser(nullptr)
 {
@@ -37,6 +32,15 @@ User* Application::GetCurrentUser() const
 	return currentUser;
 }
 
+List<Account*> Application::GetAccounts() const
+{
+	return accounts;
+}
+
+void Application::AddAccount(Account* account) {
+	accounts.addAtEnd(account);
+}
+
 Store& Application::GetStore()
 {
 	return store;
@@ -44,41 +48,48 @@ Store& Application::GetStore()
 
 bool Application::LoginAccount(const std::string& email, const std::string& password)
 {
-	// TODO: This currently always logs you in as the first account
-	currentAccount = accounts[0];
-
-	return true;
+	for (int i = 0; i < accounts.length(); i++) {
+		Account* current = accounts[i];
+	
+		// An account with this email has been found
+		if (current->GetEmail() == email) {
+			// If the provided password matches the stored one,
+			// set the current account and return successful
+			if (current->GetPassword() == password) {
+				currentAccount = current;
+				return true;
+			}
+			break;
+		}
+	}
+	// No account was found or invalid password
+	return false;
 }
 
 bool Application::LoginUser(const std::string& username, const std::string& password)
 {
-	// TODO: This currently always logs you in as the first user
-	currentUser = currentAccount->users[0];
+	// Check if an account has been logged into
+	if(currentAccount != nullptr) {
+		// Loop over all the users in the current account
+		for (int i = 0; i < currentAccount->GetUsers().length(); i++) {
+			User* user = currentAccount->GetUsers()[i];
 
-	return true;
+			if (user->GetUsername() == username) {
+				// Username exists in current Account
+				if (user->GetPassword() == password) {
+					// Passwords match!
+					currentUser = user;
+					return true;
+				}
+			}
+		}
+	}
+
+	// Invalid username or password
+	return false;
 }
 
 void Application::LogoutUser()
 {
 	currentUser = nullptr;
-}
-
-void Application::Save() {
-	
-}
-
-void Application::Load() {
-	string line;
-	ifstream fin;
-	fin.open("Data.txt", ios::in);
-	if (fin.fail()) cout << "\nError loading data.";
-	else {
-		while (getline(fin, line)) {
-			if (line == "GAME"){
-				app.GetStore().games[0] = new Game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5);
-			}
-
-		}
-		
-
 }
