@@ -8,8 +8,6 @@
 #include "Utils.h"
 #include "Date.h"
 
-#include "MainMenu.h"
-
 // TODO: Remove from global scope once menu system is integrated
 Application app;
 
@@ -31,6 +29,7 @@ void createHardcodedTestData()
 	Player* u2 = new Player("Bob", "password", "2018-09-19");
 	Player* u3 = new Player("Charlie", "password", "2018-09-24");
 
+
 	// List of games
 	List<Game*> games = app.GetStore().GetGames();
 
@@ -46,7 +45,7 @@ void createHardcodedTestData()
 
 	// Make an account and attach the users
 	app.AddAccount(new Account("alice@shu.com", "password", "2018-06-16"));
-
+	
 	Account* account = app.GetAccounts()[0];
 	account->AddUser(u1);
 	account->AddUser(u2);
@@ -279,6 +278,6 @@ void main()
 	createHardcodedTestData();
 
 	// TODO: app.Load();
-	MainMenu("Smoke", &app);
+	mainMenu();
 	// TODO: app.Save();
 }

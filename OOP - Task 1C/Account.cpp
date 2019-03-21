@@ -17,6 +17,11 @@ List<User*> Account::GetUsers() const
 	return users;
 }
 
+void Account::AddUser(User * user)
+{
+	users.addAtEnd(user);
+}
+
 std::string Account::GetEmail() const
 {
 	return email;
