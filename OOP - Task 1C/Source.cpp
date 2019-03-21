@@ -45,7 +45,7 @@ void createHardcodedTestData()
 		.AddToLibrary(new LibraryItem("2018-09-30", games[6]));
 
 	// Make an account and attach the users
-	app.AddAccount(new Account("alice@shu.com", "password", "2018-06-16"));
+	app.AddAccount(new Account("alice@shu.ac.uk", "password", "2018-06-16"));
 
 	Account* account = app.GetAccounts()[0];
 	account->AddUser(u1);
