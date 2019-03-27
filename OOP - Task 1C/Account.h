@@ -7,7 +7,7 @@
 class Account
 {
 	public:
-		Account(const std::string&, const std::string&, const std::string&);
+		Account(const std::string&, const std::string&, const Date&);
 		~Account();
 		List<User*> GetUsers() const;
 		void AddUser(User* user);
@@ -17,6 +17,6 @@ class Account
 	private:
 		std::string email;
 		std::string password;
-		std::string created;  // TODO: replace with custom Date class, currently YYYY-MM-DD
+		Date created;
 		List<User*> users;
 };
