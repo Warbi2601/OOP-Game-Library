@@ -22,8 +22,3 @@ int Game::GetCost() const
 {
 	return cost;
 }
-
-bool BuyGame()
-{
-	return true; //TODO - Implement function
-}
