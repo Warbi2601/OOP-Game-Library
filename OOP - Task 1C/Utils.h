@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include <typeinfo>
+#include "Game.h"
+#include "ListT.h"
 
 class Utils
 {
@@ -13,6 +15,7 @@ class Utils
 	static bool isType(T object, std::string type) {
 		return typeid(object).name() == type;
 	}
+	static bool StartsWith(const std::string&, const std::string&);
 };
 
 // TODO: 2 versions of ToUpper

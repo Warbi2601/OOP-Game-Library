@@ -19,8 +19,22 @@ bool StoreMenu::HandleChoice(char choice)
 {
 	if (choice == 'S')
 	{
-		string search = Question("Enter search criteria: ");
-		//app->GetStore().GetGames();
+		string searchQuery = Question("Enter search criteria: ");
+
+		List<Game*> allGames = app->GetStore().GetGames();
+		List<Game*> matchedGames;
+		
+		for (int i = 0; i < allGames.length(); i++)
+		{
+			Game* game = allGames[i];
+
+			if (Utils::StartsWith(searchQuery, game->GetName()))
+			{
+				matchedGames.addAtEnd(game);
+			}
+		}
+
+		StoreMenu("Store", app, matchedGames);
 	}
 	// since we are using numbers here we shift the char down by '1'
 	// this puts '1' as 0, '2' as 1, '3' as 2, '4' as 3, etc.

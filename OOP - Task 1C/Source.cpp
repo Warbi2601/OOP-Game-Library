@@ -23,7 +23,7 @@ void createHardcodedTestData()
 		.AddGame(new Game("INSIDE", "What are those scientists even doing?!", 1299, 15))
 		.AddGame(new Game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15))
 		.AddGame(new Game("Half Life 3", "It's never coming out.", 5999, 18))
-		.AddGame(new Game("Castle Crashers", "A small giraffe follows you around.", 999, 18))
+		.AddGame(new Game("Final Fantasy", "Save the planet!", 1599, 5))
 		.AddGame(new Game("Brothers", "Split your brain into two thumbs.", 799, 15));
 
 	// Create some users
