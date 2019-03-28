@@ -99,7 +99,6 @@ void Application::LogoutUser()
 	currentUser = nullptr;
 }
 
-
 void Application::Save() {
 
 }
@@ -130,4 +129,8 @@ void Application::Load() {
 
 		}
 	}
+
+void Application::LogoutAccount()
+{
+	currentAccount = nullptr;
 }
