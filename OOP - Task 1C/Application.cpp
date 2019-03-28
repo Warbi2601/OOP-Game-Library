@@ -160,15 +160,15 @@ void Application::Load() {
 
 						if (line == "ACCOUNT-USER-GAME") {
 							getline(fin, line);
-							string game = line;
+							string date = line;
 
 							getline(fin, line);
-							string date = line;
+							string game = line;
 
 							getline(fin, line);
 							int hours = stoi(line);
 
-							u1->AddToLibrary(new LibraryItem(game, date));
+							//u1->AddToLibrary(new LibraryItem(date,game));
 						}
 					}
 
