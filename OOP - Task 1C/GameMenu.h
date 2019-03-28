@@ -2,6 +2,8 @@
 
 #include "Menu.h"
 #include "Game.h"
+#include "Utils.h"
+#include "Player.h"
 
 class GameMenu : public Menu
 {
@@ -10,5 +12,9 @@ class GameMenu : public Menu
 		void OutputOptions() final;
 		bool HandleChoice(char choice) final;
 	private:
+<<<<<<< HEAD
 		Game* GameOnPage;
+=======
+		Game * game;
+>>>>>>> Store
 };

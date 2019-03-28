@@ -1,5 +1,4 @@
 #include "StoreMenu.h"
-#include "GameMenu.h"
 
 StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, app)
 {
@@ -9,10 +8,12 @@ StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, 
 void StoreMenu::OutputOptions()
 {
 	Option('S', "Search the store");
-	for (int i = 0; i < app->GetStore().GetGames().length(); i++)
+	List<Game*> games = app->GetStore().GetGames();
+
+	for (int i = 0; i < games.length(); i++)
 	{
 		// adding 1 so the display is nicer for the user
-		Option(i + 1, app->GetStore().GetGames()[i]->GetName());
+		Option(i + 1, games[i]->GetName());
 	}
 }
 
