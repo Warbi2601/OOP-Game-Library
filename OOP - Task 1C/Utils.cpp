@@ -12,7 +12,8 @@ char Utils::getCharFromUser()
     return toupper(getLineFromUser()[0]);
 }
 
-string Utils::StartsWith()
+List<Game*> Utils::StartsWith(std::string searchString)
 {
-
+	List()
+	return
 }

@@ -21,6 +21,8 @@ bool StoreMenu::HandleChoice(char choice)
 	if (choice == 'S')
 	{
 		string search = Question("Enter search criteria: ");
+		
+		//Utils.StartsWith();
 		//app->GetStore().GetGames();
 	}
 	// since we are using numbers here we shift the char down by '1'
