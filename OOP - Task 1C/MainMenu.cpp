@@ -34,7 +34,7 @@ bool MainMenu::HandleChoice(char choice)
 	{
 		case 'S':
 		{
-			StoreMenu("STORE", app);
+			StoreMenu("STORE", app, app->GetStore().GetGames());
 		} break;
 		case 'L':
 		{
