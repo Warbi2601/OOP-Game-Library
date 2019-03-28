@@ -45,7 +45,7 @@ void createHardcodedTestData()
 		.AddToLibrary(new LibraryItem("2018-09-30", games[6]));
 
 	// Make an account and attach the users
-	app.AddAccount(new Account("alice@shu.com", "password", "2018-06-16"));
+	app.AddAccount(new Account("alice@shu.ac.uk", "password", "2018-06-16"));
 
 	Account* account = app.GetAccounts()[0];
 	account->AddUser(u1);
@@ -54,92 +54,6 @@ void createHardcodedTestData()
 
 	// TODO: We need a login menu for accounts, for now we log in the only account
 	app.LoginAccount("alice@shu.ac.uk", "password");
-}
-
-char showMainMenuAndGetUserChoice()
-{
-	system("CLS");
-
-	////TEST
-	//Date date(1, 4, 1996);
-
-	//date.setMonth(2);
-	//date.setDay(30);
-	//date.setYear(2010);
-	//std::cout << &date;
-
-	std::cout << '\n';
-	std::cout << &Date::CurrentDate();
-	std::cout << "                    \n";
-	std::cout << "  -= GAME LIBRARY =-\n";
-	std::cout << "                    \n";
-	std::cout << "  S) Browse Store   \n";
-
-	if (app.IsUserLoggedIn())
-	{
-		std::cout << "  L) Logout of " << app.GetCurrentUser()->GetUsername() << "\n";
-		// TODO: User profile option
-	}
-	else
-	{
-		std::cout << "  L) Login      \n";
-	}
-
-	std::cout << "                    \n";
-	std::cout << "  B) Exit           \n";
-	std::cout << "                    \n";
-	std::cout << "                    \n";
-	std::cout << "  >>> ";
-
-	return Utils::getCharFromUser();
-}
-
-char showStoreMenuAndGetUserChoice()
-{
-	system("CLS");
-	std::cout << "                    \n";
-	std::cout << "  -= STORE =-       \n";
-	std::cout << "                    \n";
-
-	Store& store = app.GetStore();
-	for (int i = 0; i < store.GetGames().length(); i++) {
-		std::cout << "  " << (i + 1) << ") " << store.GetGames()[i]->GetName() << "\n";
-	}
-
-	// TODO: Implement search store option
-
-	// Output rest of menu
-	std::cout << "                    \n";
-	std::cout << "  B) Back           \n";
-	std::cout << "                    \n";
-	std::cout << "                    \n";
-	std::cout << "  >>> ";
-
-	return Utils::getCharFromUser();
-}
-
-char showLoginUserMenuAndGetUserChoice(Account *account)
-{
-	system("CLS");
-	std::cout << "                    \n";
-	std::cout << "  -= LOGIN =-       \n";
-	std::cout << "                    \n";
-
-	// Output user list
-	Store& store = app.GetStore();
-	for (int i = 0; i < account->GetUsers().length(); i++) {
-		std::cout << "  " << (i + 1) << ") " << account->GetUsers()[i]->GetUsername() << "\n";
-	}
-
-
-	// Output rest of menu
-	std::cout << "                    \n";
-	std::cout << "  B) Back           \n";
-	std::cout << "                    \n";
-	std::cout << "                    \n";
-	std::cout << "  >>> ";
-
-	return Utils::getCharFromUser();
 }
 
 char showGameMenuAndGetUserChoice(Game* game)
@@ -165,120 +79,12 @@ char showGameMenuAndGetUserChoice(Game* game)
 	return Utils::getCharFromUser();
 }
 
-void gameMenu(Game* game)
-{
-	bool readyToGoBack = false;
-
-	while (readyToGoBack == false)
-	{
-		int choice = showGameMenuAndGetUserChoice(game);
-
-		switch (choice)
-		{
-			case 'P': {
-				if (app.IsUserLoggedIn())
-				{
-					// TODO: Implement buying from the store
-				}
-			} break;
-			case 'B': {
-				readyToGoBack = true;
-			} break;
-		}
-	}
-}
-
-void storeMenu()
-{
-	bool readyToGoBack = false;
-
-	while (readyToGoBack == false)
-	{
-		int choice = showStoreMenuAndGetUserChoice();
-
-		switch (choice)
-		{
-			case 'B': {
-				readyToGoBack = true;
-			} break;
-			default: {
-				int index = choice - '1';
-
-				if (index >= 0 && index < app.GetStore().GetGames().length()) {
-					gameMenu(app.GetStore().GetGames()[index]);
-				}
-			} break;
-		}
-	}
-}
-
-void loginUserMenu()
-{
-	bool readyToGoBack = false;
-
-	while (readyToGoBack == false)
-	{
-		int choice = showLoginUserMenuAndGetUserChoice(app.GetCurrentAccount());
-
-		switch (choice)
-		{
-			case 'B': {
-				readyToGoBack = true;
-			} break;
-			default: {
-				int index = choice - '1';
-
-				if (index >= 0 && index < app.GetCurrentAccount()->GetUsers().length()) // TODO: Hardcoded, change when using List<T>
-				{
-					std::string username = app.GetCurrentAccount()->GetUsers()[index]->GetUsername();
-
-					std::cout << "  Enter password for " << username << ": ";
-					if (app.LoginUser(username, Utils::getLineFromUser()))
-					{
-						readyToGoBack = true;
-					}
-				}
-			} break;
-		}
-	}
-}
-
-void mainMenu()
-{
-	bool wantsToExit = false;
-
-	while (wantsToExit == false)
-	{
-		int choice = showMainMenuAndGetUserChoice();
-
-		switch (choice)
-		{
-			case 'S': {
-				storeMenu();
-			} break;
-			case 'L': {
-				if (app.IsUserLoggedIn())
-				{
-					app.LogoutUser();
-				}
-				else
-				{
-					loginUserMenu();
-				}
-			} break;
-			case 'B': {
-				wantsToExit = true;
-			} break;
-		}
-	}
-}
-
 void main()
 {
 	// TODO: Remove call to dummy data, instead use Load and Save
 	createHardcodedTestData();
 
 	// TODO: app.Load();
-	MainMenu("Smoke", &app);
+	MainMenu("VAPOUR", &app);
 	// TODO: app.Save();
 }

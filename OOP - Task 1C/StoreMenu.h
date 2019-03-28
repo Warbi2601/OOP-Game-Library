@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Menu.h"
+#include "Game.h"
 
 #include <string>
 #include <vector>
+
 
 class StoreMenu : public Menu
 {
@@ -12,5 +14,4 @@ class StoreMenu : public Menu
 		void OutputOptions() final;
 		bool HandleChoice(char choice) final;
 	private:
-		std::vector<std::string> games = { "Factorio", "The Witness", "INSIDE", "Brothers" };
 };
