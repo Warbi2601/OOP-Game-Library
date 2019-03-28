@@ -19,7 +19,7 @@ void MainMenu::OutputOptions()
 		if (app->IsAccountLoggedIn())
 		{
 			Option('L', "Login to user");
-			Option('Q', "Logout of profile");
+			Option('Q', "Logout of account");
 		}
 		else
 		{

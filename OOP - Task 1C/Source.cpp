@@ -52,31 +52,6 @@ void createHardcodedTestData()
 	account->AddUser(u2);
 	account->AddUser(u3);
 
-	// TODO: We need a login menu for accounts, for now we log in the only account
-	app.LoginAccount("alice@shu.ac.uk", "password");
-}
-
-char showGameMenuAndGetUserChoice(Game* game)
-{
-	system("CLS");
-	std::cout << "                                  \n";
-	std::cout << "  -= " << game->GetName() << " =- \n";
-	std::cout << "                                  \n";
-	std::cout << "  " << game->GetDescription() << "\n";
-	std::cout << "                                  \n";
-
-	if (app.IsUserLoggedIn())
-	{
-		std::cout << "  P) Purchase for " << (game->GetCost() / 100.0f) << "\n";
-		std::cout << "                                                      \n";
-	}
-
-	std::cout << "  B) Back                   \n";
-	std::cout << "                            \n";
-	std::cout << "                            \n";
-	std::cout << "  >>> ";
-
-	return Utils::getCharFromUser();
 }
 
 void main()
