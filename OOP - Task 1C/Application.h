@@ -23,6 +23,7 @@ class Application
 		void Load();
 		void Save();
 		bool LoginAccount(const std::string& email, const std::string& password);
+		void LogoutAccount();
 		bool LoginUser(const std::string& username, const std::string& password);
 		void LogoutUser();
 		bool IsPlayer();
