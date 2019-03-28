@@ -2,6 +2,7 @@
 
 #include "Menu.h"
 #include "Game.h"
+#include "GameMenu.h"
 
 #include <string>
 #include <vector>

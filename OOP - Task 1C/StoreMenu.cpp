@@ -1,5 +1,4 @@
 #include "StoreMenu.h"
-#include "GameMenu.h"
 
 StoreMenu::StoreMenu(const std::string& title, Application * app, List<Game*> games) : gamesToDisplay(games), Menu(title, app)
 {

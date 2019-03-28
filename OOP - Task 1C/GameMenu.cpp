@@ -3,19 +3,21 @@
 
 using namespace std;
 
-GameMenu::GameMenu(const std::string& title, Application * app, Game* game) : GameOnPage(game), Menu(title, app)
+GameMenu::GameMenu(const std::string& title, Application * app, Game* game) : Menu(title, app), game(game)
 {
 	Paint(); // required in constructor
 }
 
 void GameMenu::OutputOptions()
 {
-	assert(GameOnPage != nullptr);
+	assert(game != nullptr);
 
-	Line(GameOnPage->GetDescription());
-	Line("Cost:" + GameOnPage->GetCost());
+	Line(game->GetDescription());
+	Line("Cost: " + game->GetCost());
 
-	Option('P', "Buy game");
+	if()
+
+	Option('P', "Purchase game");
 }
 
 bool GameMenu::HandleChoice(char choice)
@@ -26,8 +28,29 @@ bool GameMenu::HandleChoice(char choice)
 		{
 			if (app->IsUserLoggedIn())
 			{
-				Question("Not implemented, press return to continue (");
-				// this needs to add the game to the users account..
+				std::string answer = Question("Are you sure?");
+				if (answer == "y" || answer == "Y")
+				{
+					User* user = app->GetCurrentUser();
+
+					if (Utils::isType(user, "Player")) {
+						Player* player = dynamic_cast<Player*>(user);
+						cout << player->PurchaseGame(game);
+					}
+					else {
+						break;
+					}
+
+					// Remove cost
+					// game.GetCost();
+				}
+			}
+			else
+			{
+				// this would need to go to a LoginMenu - similar to StoreMenu
+				// instead we just set logged in to true on the main app object
+
+				//app->LogIn();
 			}
 		} break;
 	}
