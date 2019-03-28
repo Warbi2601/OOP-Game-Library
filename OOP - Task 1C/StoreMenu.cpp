@@ -1,6 +1,6 @@
 #include "StoreMenu.h"
 
-StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, app)
+StoreMenu::StoreMenu(const std::string& title, Application * app, List<Game*> games) : gamesToDisplay(games), Menu(title, app)
 {
 	Paint(); // required in constructor
 }
@@ -8,12 +8,10 @@ StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, 
 void StoreMenu::OutputOptions()
 {
 	Option('S', "Search the store");
-	List<Game*> games = app->GetStore().GetGames();
-
-	for (int i = 0; i < games.length(); i++)
+	for (int i = 0; i < gamesToDisplay.length(); i++)
 	{
 		// adding 1 so the display is nicer for the user
-		Option(i + 1, games[i]->GetName());
+		Option(i + 1, gamesToDisplay[i]->GetName());
 	}
 }
 
