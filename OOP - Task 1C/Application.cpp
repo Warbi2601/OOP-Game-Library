@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Admin.h"
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -106,6 +107,7 @@ void Application::Save() {
 
 void Application::Load() {
 	string line;
+	Account* account = GetAccounts()[0];
 	ifstream fin;
 	fin.open("Data.txt", ios::in);
 	if (fin.fail()) cout << "\nError loading data.";
@@ -126,6 +128,66 @@ void Application::Load() {
 				int age = stoi(line);
 				
 				GetStore().AddGame(new Game(name, desc, price, age));
+			}
+
+			else if (line == "ACCOUNT") {
+
+				getline(fin, line);
+				string email = line;
+
+				getline(fin, line);
+				string pass = line;
+
+				getline(fin, line);
+				string date = line;
+
+				AddAccount(new Account(email, pass, date));
+			}
+
+			else if (line == "ACCOUNT-USER") {
+				int i = 0;
+					if (i == 0) {
+						getline(fin, line);
+						string name = line;
+
+						getline(fin, line);
+						string pass = line;
+
+						getline(fin, line);
+						string date = line;
+						Player* u1 = new Admin(name,pass,date);
+
+						account->AddUser(u1);
+						i++;
+
+						if (line == "ACCOUNT-USER-GAME") {
+							getline(fin, line);
+							string game = line;
+
+							getline(fin, line);
+							string date = line;
+
+							getline(fin, line);
+							int hours = stoi(line);
+
+							u1->AddToLibrary(new LibraryItem(game, date));
+						}
+					}
+
+					else {
+						getline(fin, line);
+						string name = line;
+
+						getline(fin, line);
+						string pass = line;
+
+						getline(fin, line);
+						string date = line;
+						Player* u1 = new Player(name, pass, date);
+
+						account->AddUser(u1);
+					}
+			
 			}
 
 		}
