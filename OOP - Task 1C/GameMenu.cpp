@@ -24,7 +24,15 @@ bool GameMenu::HandleChoice(char choice)
 				if (answer == "y" || answer == "Y")
 				{
 					User* user = app->GetCurrentUser();
-					user->AddToLibrary(new LibraryItem("", game));
+					
+					if (Utils::isType(user, "Player")) {
+						Player* player = dynamic_cast<Player*>(user);
+						cout << player->PurchaseGame(game);
+					}
+					else {
+						break;
+					}
+					
 					// Remove cost
 					// game.GetCost();
 				}

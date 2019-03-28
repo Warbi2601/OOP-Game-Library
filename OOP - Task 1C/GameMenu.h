@@ -2,6 +2,8 @@
 
 #include "Menu.h"
 #include "Game.h"
+#include "Utils.h"
+#include "Player.h"
 
 class GameMenu : public Menu
 {
