@@ -141,10 +141,9 @@ void Application::Load() {
 				string date = line;
 
 				AddAccount(new Account(email, pass, date));
-			}
 
-			else if (line == "ACCOUNT-USER") {
-				int i = 0;
+				if (line == "ACCOUNT-USER") {
+					int i = 0;
 					if (i == 0) {
 						getline(fin, line);
 						string name = line;
@@ -154,7 +153,7 @@ void Application::Load() {
 
 						getline(fin, line);
 						string date = line;
-						Player* u1 = new Admin(name,pass,date);
+						Player* u1 = new Admin(name, pass, date);
 
 						account->AddUser(u1);
 						i++;
@@ -186,8 +185,10 @@ void Application::Load() {
 
 						account->AddUser(u1);
 					}
-			
+
+				}
 			}
+
 
 		}
 	}
