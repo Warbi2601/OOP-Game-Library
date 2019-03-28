@@ -18,21 +18,14 @@ bool GameMenu::HandleChoice(char choice)
 	{
 		case 'P':
 		{
-			if (app->IsUserLoggedIn())
+			if (app->IsPlayer())
 			{
 				std::string answer = Question("Are you sure?");
 				if (answer == "y" || answer == "Y")
 				{
-					User* user = app->GetCurrentUser();
-					
-					if (Utils::isType(user, "Player")) {
-						Player* player = dynamic_cast<Player*>(user);
-						cout << player->PurchaseGame(game);
-					}
-					else {
-						break;
-					}
-					
+					Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
+					bool success = player->PurchaseGame(game);
+					cout << success;
 					// Remove cost
 					// game.GetCost();
 				}

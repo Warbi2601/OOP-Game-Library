@@ -93,3 +93,11 @@ void Application::LogoutUser()
 {
 	currentUser = nullptr;
 }
+
+bool Application::IsPlayer() {
+	if (IsUserLoggedIn())
+	{
+		return Utils::isType(GetCurrentUser(), "Player");
+	}
+	return false;
+}
