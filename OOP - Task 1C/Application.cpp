@@ -56,7 +56,7 @@ bool Application::LoginAccount(const std::string& email, const std::string& pass
 {
 	for (int i = 0; i < accounts.length(); i++) {
 		Account* current = accounts[i];
-	
+
 		// An account with this email has been found
 		if (current->GetEmail() == email) {
 			// If the provided password matches the stored one,
@@ -197,4 +197,12 @@ void Application::Load() {
 void Application::LogoutAccount()
 {
 	currentAccount = nullptr;
+}
+
+bool Application::IsPlayer() {
+	if (IsUserLoggedIn())
+	{
+		return Utils::isType(GetCurrentUser(), "Player");
+	}
+	return false;
 }
