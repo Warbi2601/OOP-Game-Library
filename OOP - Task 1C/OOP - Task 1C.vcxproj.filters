@@ -116,5 +116,8 @@
     <ClInclude Include="GameMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ListT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

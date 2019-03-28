@@ -9,7 +9,7 @@
 class Player : public User
 {
 	public:
-		Player(const std::string&, const std::string&, const std::string&);
+		Player(const std::string&, const std::string&, const Date&);
 		~Player();
 		// Library
 		List<LibraryItem*> GetLibrary() const;

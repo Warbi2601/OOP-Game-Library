@@ -1,4 +1,5 @@
 #include "GameMenu.h"
+#include "LoginMenu.h"
 
 using namespace std;
 
@@ -9,6 +10,11 @@ GameMenu::GameMenu(const std::string& title, Application * app, Game* game) : Me
 
 void GameMenu::OutputOptions()
 {
+	assert(game != nullptr);
+
+	Line(game->GetDescription());
+	Line("Cost: " + game->GetCost());
+
 	Option('P', "Purchase game");
 }
 

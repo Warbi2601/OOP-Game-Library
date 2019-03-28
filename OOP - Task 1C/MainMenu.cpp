@@ -12,11 +12,19 @@ void MainMenu::OutputOptions()
 	if (app->IsUserLoggedIn())
 	{
 		Option('P', "View Profile");
-		Option('L', "Logout");
+		Option('L', "Logout of user");
 	}
 	else
 	{
-		Option('L', "Login");
+		if (app->IsAccountLoggedIn())
+		{
+			Option('L', "Login to user");
+			Option('Q', "Logout of profile");
+		}
+		else
+		{
+			Option('L', "Login to account");
+		}
 	}
 }
 
@@ -26,25 +34,31 @@ bool MainMenu::HandleChoice(char choice)
 	{
 		case 'S':
 		{
-			StoreMenu("STORE", app);
+			StoreMenu("STORE", app, app->GetStore().GetGames());
 		} break;
 		case 'L':
 		{
-			if (app->IsUserLoggedIn())
+			if (app->IsAccountLoggedIn())
 			{
-				std::string answer = Question("Are you sure?");
-				if (answer == "y" || answer == "Y")
+				if (app->IsUserLoggedIn())
 				{
-					app->LogoutUser();
+					std::string answer = Question("Are you sure?");
+					if (answer == "y" || answer == "Y") app->LogoutUser();
 				}
+				else LoginMenu("Login", app);
 			}
 			else
 			{
-				// this would need to go to a LoginMenu - similar to StoreMenu
-				// instead we just set logged in to true on the main app object
+				string email = Question("Enter your account email: ");
+				string password = Question("Enter your account password: ");
+				if (!app->LoginAccount(email, password)) Line("Login failed, try again...");
 
-				LoginMenu("Login", app);
 			}
+		} break;
+		case 'Q':
+		{
+			std::string answer = Question("Are you sure?");
+			if (answer == "y" || answer == "Y") app->LogoutAccount();
 		} break;
 		case 'P':
 		{

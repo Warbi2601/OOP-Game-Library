@@ -9,7 +9,7 @@ LoginMenu::LoginMenu(const std::string& title, Application * app) : Menu(title, 
 
 void LoginMenu::OutputOptions()
 {
-	for (int i = 0; i < 3; i++) //app->GetCurrentAccount()->users)
+	for (int i = 0; i < app->GetCurrentAccount()->GetUsers().length(); i++)
 	{
 		Option(i, app->GetCurrentAccount()->GetUsers()[i]->GetUsername());
 	}
@@ -49,8 +49,13 @@ bool LoginMenu::HandleChoice(char choice)
 	}
 
 	int choiceAsInt = choice - '0';
-	if (choiceAsInt <= 9 || choiceAsInt >= 0)
+	if (choiceAsInt <= app->GetCurrentAccount()->GetUsers().length() || choiceAsInt >= 0)
 	{
+		string username = app->GetCurrentAccount()->GetUsers()[choiceAsInt]->GetUsername();
+		string password = Question("Enter your password:");
+
+		app->LoginUser(username, password);
+		return true;
 
 	}
 	
