@@ -1,4 +1,5 @@
 #include "StoreMenu.h"
+#include "GameMenu.h"
 
 StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, app)
 {
@@ -7,24 +8,30 @@ StoreMenu::StoreMenu(const std::string& title, Application * app) : Menu(title, 
 
 void StoreMenu::OutputOptions()
 {
-	for (int i = 0; i < games.size(); i++)
+	Option('S', "Search the store");
+	for (int i = 0; i < app->GetStore().GetGames().length(); i++)
 	{
 		// adding 1 so the display is nicer for the user
-		Option(i + 1, games[i]);
+		Option(i + 1, app->GetStore().GetGames()[i]->GetName());
 	}
 }
 
 bool StoreMenu::HandleChoice(char choice)
 {
+	if (choice == 'S')
+	{
+		string search = Question("Enter search criteria: ");
+		//app->GetStore().GetGames();
+	}
 	// since we are using numbers here we shift the char down by '1'
 	// this puts '1' as 0, '2' as 1, '3' as 2, '4' as 3, etc.
 	// this reverses the + 1 above and lets us do the range check below
 	int index = choice - '1';
+	Game* selected = app->GetStore().GetGames()[index];
 
-	if (index >= 0 && index < games.size())
+	if (index >= 0 && index < app->GetStore().GetGames().length())
 	{
-		Question("Not implemented, press return to continue (");
-		// go to game detail page
+		GameMenu(selected->GetName(), app, selected);
 	}
 
 	return false;

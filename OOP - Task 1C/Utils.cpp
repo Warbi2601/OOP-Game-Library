@@ -11,3 +11,8 @@ char Utils::getCharFromUser()
 {
     return toupper(getLineFromUser()[0]);
 }
+
+string Utils::StartsWith()
+{
+
+}
