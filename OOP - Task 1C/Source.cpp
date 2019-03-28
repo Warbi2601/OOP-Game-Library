@@ -27,9 +27,9 @@ void createHardcodedTestData()
 		.AddGame(new Game("Brothers", "Split your brain into two thumbs.", 799, 15));
 
 	// Create some users
-	Player* u1 = new Admin("Alice", "password", Date(16, 6, 2018));
-	Player* u2 = new Player("Bob", "password", Date(19, 9, 2018));
-	Player* u3 = new Player("Charlie", "password", Date(24, 9, 2018));
+	Player* u1 = new Admin("Alice", "a", Date(16, 6, 2018));
+	Player* u2 = new Player("Bob", "a", Date(19, 9, 2018));
+	Player* u3 = new Player("Charlie", "a", Date(24, 9, 2018));
 
 	// List of games
 	List<Game*> games = app.GetStore().GetGames();
@@ -45,7 +45,7 @@ void createHardcodedTestData()
 		.AddToLibrary(new LibraryItem(Date(30, 9, 2018), games[6]));
 
 	// Make an account and attach the users
-	app.AddAccount(new Account("alice@shu.ac.uk", "password", Date(16, 6, 2018)));
+	app.AddAccount(new Account("a", "a", Date(16, 6, 2018)));
 
 	Account* account = app.GetAccounts()[0];
 	account->AddUser(u1);
