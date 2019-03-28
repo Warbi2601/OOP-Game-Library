@@ -16,6 +16,7 @@ class Utils
 		return typeid(object).name() == type;
 	}
 	static bool StartsWith(const std::string&, const std::string&);
+	static void ToUpper(std::string&);
 };
 
 // TODO: 2 versions of ToUpper
