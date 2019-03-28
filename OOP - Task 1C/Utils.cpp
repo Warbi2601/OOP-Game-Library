@@ -16,3 +16,11 @@ bool Utils::StartsWith(const std::string& searchString, const std::string& compa
 {
 	return compareString.compare(0, searchString.length(), searchString) == 0;
 }
+
+void Utils::ToUpper(std::string& stringToChange)
+{
+	for (int i = 0; i < stringToChange.length(); i++)
+	{
+		stringToChange[i] = toupper(stringToChange[i]);
+	}
+}

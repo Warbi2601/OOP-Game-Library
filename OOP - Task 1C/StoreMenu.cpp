@@ -29,8 +29,12 @@ bool StoreMenu::HandleChoice(char choice)
 		for (int i = 0; i < allGames.length(); i++)
 		{
 			Game* game = allGames[i];
+			std::string gameName = game->GetName();
 
-			if (Utils::StartsWith(searchQuery, game->GetName()))
+			Utils::ToUpper(gameName);
+			Utils::ToUpper(searchQuery);
+
+			if (Utils::StartsWith(searchQuery, gameName))
 			{
 				matchedGames.addAtEnd(game);
 			}
