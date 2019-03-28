@@ -12,8 +12,7 @@ char Utils::getCharFromUser()
     return toupper(getLineFromUser()[0]);
 }
 
-List<Game*> Utils::StartsWith(std::string searchString)
+bool Utils::StartsWith(const std::string& searchString, const std::string& compareString)
 {
-	List()
-	return
+	return compareString.compare(0, searchString.length(), searchString) == 0;
 }

@@ -23,7 +23,7 @@ void createHardcodedTestData()
 		.AddGame(new Game("INSIDE", "What are those scientists even doing?!", 1299, 15))
 		.AddGame(new Game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15))
 		.AddGame(new Game("Half Life 3", "It's never coming out.", 5999, 18))
-		.AddGame(new Game("Castle Crashers", "A small giraffe follows you around.", 999, 18))
+		.AddGame(new Game("Final Fantasy", "Save the planet!", 1599, 5))
 		.AddGame(new Game("Brothers", "Split your brain into two thumbs.", 799, 15));
 
 	// Create some users
@@ -45,7 +45,7 @@ void createHardcodedTestData()
 		.AddToLibrary(new LibraryItem(Date(30, 9, 2018), games[6]));
 
 	// Make an account and attach the users
-	app.AddAccount(new Account("alice@shu.ac.uk", "password", Date(16, 6, 2018)));
+	app.AddAccount(new Account("a", "a", Date(16, 6, 2018)));
 
 	Account* account = app.GetAccounts()[0];
 	account->AddUser(u1);

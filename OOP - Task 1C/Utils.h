@@ -10,7 +10,7 @@ class Utils
   public:
     static std::string getLineFromUser();
     static char getCharFromUser();
-	static List<Game*> StartsWith();
+	static bool StartsWith(const std::string&, const std::string&);
 };
 
 // TODO: 2 versions of ToUpper
