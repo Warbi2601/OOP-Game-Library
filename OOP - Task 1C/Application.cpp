@@ -123,12 +123,13 @@ void Application::Load() {
 
 				getline(fin, line);
 				int age = stoi(line);
-				
+
 				GetStore().AddGame(new Game(name, desc, price, age));
 			}
 
 		}
 	}
+}
 
 void Application::LogoutAccount()
 {
