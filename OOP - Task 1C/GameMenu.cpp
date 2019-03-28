@@ -13,7 +13,9 @@ void GameMenu::OutputOptions()
 	assert(game != nullptr);
 
 	Line(game->GetDescription());
-	Line("Cost:" + game->GetCost());
+	Line("Cost: " + game->GetCost());
+
+	if()
 
 	Option('P', "Purchase game");
 }

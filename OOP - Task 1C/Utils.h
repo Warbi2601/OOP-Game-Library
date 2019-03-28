@@ -8,7 +8,6 @@ class Utils
 {
   public:
     static std::string getLineFromUser();
-    static void StartsWith();
 	static char getCharFromUser();
 	template <class T>
 	static bool isType(T object, std::string type) {

@@ -12,9 +12,5 @@ class GameMenu : public Menu
 		void OutputOptions() final;
 		bool HandleChoice(char choice) final;
 	private:
-<<<<<<< HEAD
-		Game* GameOnPage;
-=======
 		Game * game;
->>>>>>> Store
 };
