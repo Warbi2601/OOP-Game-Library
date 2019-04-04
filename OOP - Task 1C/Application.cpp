@@ -106,13 +106,15 @@ void Application::Save() {
 
 void Application::Load() {
 	string line;
-	Account* account = GetAccounts()[0];
 	ifstream fin;
-	fin.open("Data.txt", ios::in);
+	fin.open("data.txt", ios::in);
 	if (fin.fail()) cout << "\nError loading data.";
 	else {
 		while (getline(fin, line)) {
 			if (line == "GAME") {
+
+				getline(fin, line);
+				int id = stoi(line);
 
 				getline(fin, line);
 				string name = line;
@@ -126,7 +128,7 @@ void Application::Load() {
 				getline(fin, line);
 				int age = stoi(line);
 
-				GetStore().AddGame(new Game(name, desc, price, age));
+				GetStore().AddGame(new Game(id, name, desc, price, age));
 			}
 
 			else if (line == "ACCOUNT") {
@@ -153,25 +155,30 @@ void Application::Load() {
 
 						getline(fin, line);
 						string date = line;
-						Player* u1 = new Admin(name, pass, date);
 
+						getline(fin, line);
+						int credits = stoi(line);
+						
+						
+						Player* u1 = new Admin(name, pass, date);
+						Account* account = GetAccounts()[0];
 						account->AddUser(u1);
 						i++;
 
 						if (line == "ACCOUNT-USER-GAME") {
 							getline(fin, line);
-							string date = line;
-
+							int game = stoi(line);
+							List<Game*> games = store.GetGames();
 							getline(fin, line);
-							string game = line;
+							string date = line;
 
 							getline(fin, line);
 							int hours = stoi(line);
 
-							//u1->AddToLibrary(new LibraryItem(date,game));
+							u1->AddToLibrary(new LibraryItem(date,games[game]));
 						}
-					}
 
+					}
 					else {
 						getline(fin, line);
 						string name = line;
@@ -182,9 +189,23 @@ void Application::Load() {
 						getline(fin, line);
 						string date = line;
 						Player* u1 = new Player(name, pass, date);
-
+						Account* account = GetAccounts()[0];
 						account->AddUser(u1);
+
+						if (line == "ACCOUNT-USER-GAME") {
+							getline(fin, line);
+							int game = stoi(line);
+							List<Game*> games = store.GetGames();
+							getline(fin, line);
+							string date = line;
+
+							getline(fin, line);
+							int hours = stoi(line);
+
+							u1->AddToLibrary(new LibraryItem(date,games[game]));
+						}
 					}
+
 
 				}
 			}

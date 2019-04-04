@@ -102,7 +102,7 @@ List<T>::~List()
 template <class T>
 T& List<T>::operator[] (const int index)
 {
-	assert(index >= 0 && index < this->length());
+	assert(index >= 0 && index <= this->length());
 
 	Node<T>* current = this->head_;
 	for (int i = 0; i < index; i++) {
