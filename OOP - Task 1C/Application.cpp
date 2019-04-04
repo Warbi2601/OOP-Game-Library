@@ -107,9 +107,12 @@ void Application::Save() {
 void Application::Load() {
 	string line;
 	ifstream fin;
+
 	fin.open("data.txt", ios::in);
 	if (fin.fail()) cout << "\nError loading data.";
 	else {
+		int count = 0;
+		Account* account = GetAccounts()[count];
 		while (getline(fin, line)) {
 			if (line == "GAME") {
 
@@ -132,6 +135,8 @@ void Application::Load() {
 			}
 
 			else if (line == "ACCOUNT") {
+				getline(fin, line);
+				Date date = line;
 
 				getline(fin, line);
 				string email = line;
@@ -139,38 +144,36 @@ void Application::Load() {
 				getline(fin, line);
 				string pass = line;
 
-				getline(fin, line);
-				string date = line;
 
 				AddAccount(new Account(email, pass, date));
 
 				if (line == "ACCOUNT-USER") {
-					int i = 0;
-					if (i == 0) {
+					if (count == 0) {
+
+						getline(fin, line);
+						Date date = line;
+
 						getline(fin, line);
 						string name = line;
 
 						getline(fin, line);
 						string pass = line;
 
-						getline(fin, line);
-						string date = line;
 
 						getline(fin, line);
 						int credits = stoi(line);
 						
 						
 						Player* u1 = new Admin(name, pass, date);
-						Account* account = GetAccounts()[0];
 						account->AddUser(u1);
-						i++;
+						
 
 						if (line == "ACCOUNT-USER-GAME") {
 							getline(fin, line);
 							int game = stoi(line);
 							List<Game*> games = store.GetGames();
 							getline(fin, line);
-							string date = line;
+							Date date = line;
 
 							getline(fin, line);
 							int hours = stoi(line);
@@ -179,7 +182,7 @@ void Application::Load() {
 						}
 
 					}
-					else {
+					else if (line == "ACCOUNT-USER"){
 						getline(fin, line);
 						string name = line;
 
@@ -187,9 +190,9 @@ void Application::Load() {
 						string pass = line;
 
 						getline(fin, line);
-						string date = line;
+						Date date = line;
 						Player* u1 = new Player(name, pass, date);
-						Account* account = GetAccounts()[0];
+						Account* account = GetAccounts()[count];
 						account->AddUser(u1);
 
 						if (line == "ACCOUNT-USER-GAME") {
@@ -205,6 +208,7 @@ void Application::Load() {
 							u1->AddToLibrary(new LibraryItem(date,games[game]));
 						}
 					}
+					count++;
 
 
 				}
