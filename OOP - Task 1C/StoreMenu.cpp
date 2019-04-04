@@ -7,6 +7,8 @@ StoreMenu::StoreMenu(const std::string& title, Application * app, List<Game*> ga
 
 void StoreMenu::OutputOptions()
 {
+	if (gamesToDisplay.isEmpty()) Line("No results found.");
+
 	Option('S', "Search the store");
 	for (int i = 0; i < gamesToDisplay.length(); i++)
 	{
@@ -19,8 +21,27 @@ bool StoreMenu::HandleChoice(char choice)
 {
 	if (choice == 'S')
 	{
-		string search = Question("Enter search criteria: ");
-		//app->GetStore().GetGames();
+		string searchQuery = Question("Enter search criteria: ");
+
+		List<Game*> allGames = app->GetStore().GetGames();
+		List<Game*> matchedGames;
+		
+		for (int i = 0; i < allGames.length(); i++)
+		{
+			Game* game = allGames[i];
+			std::string gameName = game->GetName();
+
+			Utils::ToUpper(gameName);
+			Utils::ToUpper(searchQuery);
+
+			if (Utils::StartsWith(searchQuery, gameName))
+			{
+				matchedGames.addAtEnd(game);
+			}
+		}
+
+		gamesToDisplay = matchedGames;
+		Paint();
 	}
 	// since we are using numbers here we shift the char down by '1'
 	// this puts '1' as 0, '2' as 1, '3' as 2, '4' as 3, etc.
