@@ -64,7 +64,7 @@ bool MainMenu::HandleChoice(char choice)
 		{
 			if (app->IsUserLoggedIn())
 			{
-				ProfileMenu(app->GetCurrentUser()->GetUsername(), app);
+				ProfileMenu(app->GetCurrentUser()->GetUsername() + "'s profile", app);
 			}
 		} break;
 	}
