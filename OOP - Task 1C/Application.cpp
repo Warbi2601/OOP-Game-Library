@@ -161,10 +161,10 @@ void Application::Load() {
 
 
 					getline(fin, line);
-					int credits = stoi(line);
+					double credits = stod(line);
 
 
-					Player* u1 = new Admin(name, pass, date);
+					Player* u1 = new Admin(name, pass, date, credits);
 					Account* account = accounts[count];
 					account->AddUser(u1);
 					getline(fin, line);
@@ -190,12 +190,15 @@ void Application::Load() {
 
 					getline(fin, line);
 					Date date = line;
-					Player* u1 = new Player(name, pass, date);
+
+					getline(fin, line);
+					double credits = stod(line);
+					Player* u1 = new Player(name, pass, date, credits);
 					Account* account = GetAccounts()[count];
 					account->AddUser(u1);
 
 					getline(fin, line);
-					if (line == "ACCOUNT																	``````````-USER-GAME") {
+					if (line == "ACCOUNT-USER-GAME") {
 						getline(fin, line);
 						int game = stoi(line);
 						List<Game*> games = store.GetGames();
