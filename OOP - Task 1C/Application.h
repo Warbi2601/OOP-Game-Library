@@ -9,6 +9,11 @@
 #include <sstream>
 #include <fstream>
 
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <cassert>
+
 class Application
 {
 	public:

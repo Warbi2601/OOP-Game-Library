@@ -1,8 +1,4 @@
 #include "Application.h"
-#include "Admin.h"
-#include <iostream>
-#include <sstream>
-#include <fstream>
 
 using namespace std;
 
@@ -44,6 +40,8 @@ List<Account*> Application::GetAccounts() const
 }
 
 void Application::AddAccount(Account* account) {
+	assert(account != nullptr);
+
 	accounts.addAtEnd(account);
 }
 
