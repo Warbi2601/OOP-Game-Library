@@ -5,6 +5,8 @@
 #include "Application.h"
 #include "LibraryItem.h"
 #include "LoginMenu.h"
+#include "ProfileMenu.h"
+#include "User.h"
 
 
 class MainMenu : public Menu
