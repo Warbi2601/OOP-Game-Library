@@ -1,4 +1,9 @@
 #include "Application.h"
+#include <iostream>
+#include <sstream>
+#include <fstream>
+
+using namespace std;
 
 Application::Application() : currentAccount(nullptr), currentUser(nullptr)
 {
@@ -50,7 +55,7 @@ bool Application::LoginAccount(const std::string& email, const std::string& pass
 {
 	for (int i = 0; i < accounts.length(); i++) {
 		Account* current = accounts[i];
-	
+
 		// An account with this email has been found
 		if (current->GetEmail() == email) {
 			// If the provided password matches the stored one,
@@ -94,7 +99,47 @@ void Application::LogoutUser()
 	currentUser = nullptr;
 }
 
+void Application::Save() {
+
+}
+
+void Application::Load() {
+	string line;
+	ifstream fin;
+	fin.open("Data.txt", ios::in);
+	if (fin.fail()) cout << "\nError loading data.";
+	else {
+		while (getline(fin, line)) {
+			if (line == "GAME") {
+
+				getline(fin, line);
+				string name = line;
+
+				getline(fin, line);
+				string desc = line;
+
+				getline(fin, line);
+				int price = stoi(line);
+
+				getline(fin, line);
+				int age = stoi(line);
+
+				GetStore().AddGame(new Game(name, desc, price, age));
+			}
+
+		}
+	}
+}
+
 void Application::LogoutAccount()
 {
 	currentAccount = nullptr;
+}
+
+bool Application::IsPlayer() {
+	if (IsUserLoggedIn())
+	{
+		return Utils::isType(GetCurrentUser(), "Player");
+	}
+	return false;
 }

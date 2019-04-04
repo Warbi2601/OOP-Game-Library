@@ -23,35 +23,37 @@ void createHardcodedTestData()
 		.AddGame(new Game("INSIDE", "What are those scientists even doing?!", 1299, 15))
 		.AddGame(new Game("Portal 2", "Play around with physics. Shoot the moon.", 1999, 15))
 		.AddGame(new Game("Half Life 3", "It's never coming out.", 5999, 18))
-		.AddGame(new Game("Castle Crashers", "A small giraffe follows you around.", 999, 18))
+		.AddGame(new Game("Final Fantasy", "Save the planet!", 1599, 5))
 		.AddGame(new Game("Brothers", "Split your brain into two thumbs.", 799, 15));
 
 	// Create some users
-	Player* u1 = new Admin("Alice", "password", "2018-06-16");
-	Player* u2 = new Player("Bob", "password", "2018-09-19");
-	Player* u3 = new Player("Charlie", "password", "2018-09-24");
+	Player* u1 = new Admin("Alice", "a", Date(16, 6, 2018));
+	Player* u2 = new Player("Bob", "a", Date(19, 9, 2018));
+	Player* u3 = new Player("Charlie", "a", Date(24, 9, 2018));
 
 	// List of games
 	List<Game*> games = app.GetStore().GetGames();
 
 	// With some games in their library
-	u1->AddToLibrary(new LibraryItem("2018-06-17", games[0]))
-		.AddToLibrary(new LibraryItem("2018-06-18", games[1]));
+	u1->AddToLibrary(new LibraryItem(Date(17, 6, 2018), games[0]))
+		.AddToLibrary(new LibraryItem(Date(18, 6, 2018), games[1]));
 
-	u2->AddToLibrary(new LibraryItem("2018-09-19", games[2]))
-		.AddToLibrary(new LibraryItem("2018-09-19", games[3]));
+	u2->AddToLibrary(new LibraryItem(Date(19, 9, 2018), games[2]))
+		.AddToLibrary(new LibraryItem(Date(19, 9, 2018), games[3]));
 
-	u3->AddToLibrary(new LibraryItem("2018-09-24", games[3]))
-		.AddToLibrary(new LibraryItem("2018-09-30", games[6]));
+	u3->AddToLibrary(new LibraryItem(Date(24, 9, 2018), games[3]))
+		.AddToLibrary(new LibraryItem(Date(30, 9, 2018), games[6]));
 
 	// Make an account and attach the users
-	app.AddAccount(new Account("alice@shu.ac.uk", "password", "2018-06-16"));
+	app.AddAccount(new Account("a", "a", Date(16, 6, 2018)));
 
 	Account* account = app.GetAccounts()[0];
 	account->AddUser(u1);
 	account->AddUser(u2);
 	account->AddUser(u3);
 
+	// TODO: We need a login menu for accounts, for now we log in the only account
+	app.LoginAccount("a", "a");
 }
 
 void main()

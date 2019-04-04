@@ -4,6 +4,7 @@
 #include "User.h"
 #include "Store.h"
 #include "ListT.h"
+#include "Utils.h"
 
 class Application
 {
@@ -19,12 +20,14 @@ class Application
 		void AddAccount(Account * account);
 
 		Store& GetStore();
-
+		void Load();
+		void Save();
 		bool LoginAccount(const std::string& email, const std::string& password);
+		void LogoutAccount();
 		bool LoginUser(const std::string& username, const std::string& password);
 		void LogoutUser();
-		void LogoutAccount();
-	private:
+		bool IsPlayer();
+private:
 		Store store;
 		Account* currentAccount;
 		User* currentUser;

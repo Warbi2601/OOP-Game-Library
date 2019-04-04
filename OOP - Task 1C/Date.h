@@ -1,5 +1,14 @@
 #pragma once
 
+#include <iostream>
+#include <time.h>
+#include <sstream>
+#include <iomanip>
+#include <conio.h>
+#include <ctime>
+#include <assert.h>
+#include <vector>
+
 using namespace std;
 
 class Date
