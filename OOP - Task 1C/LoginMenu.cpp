@@ -17,36 +17,6 @@ void LoginMenu::OutputOptions()
 
 bool LoginMenu::HandleChoice(char choice)
 {
-	switch (choice)
-	{
-		case 'L':
-		{
-			if (app->IsUserLoggedIn())
-			{
-				std::string answer = Question("Are you sure?");
-				if (answer == "y" || answer == "Y")
-				{
-					//app->LogOut();
-				}
-			}
-			else
-			{
-				// this would need to go to a LoginMenu - similar to StoreMenu
-				// instead we just set logged in to true on the main app object
-
-				//app->LogIn();
-			}
-		} break;
-		case 'P':
-		{
-			if (app->IsUserLoggedIn())
-			{
-				Question("Not implemented, press return to continue (");
-				// this needs to go to a profile page - similar to StoreMenu
-				// notice the if - this only works if somebody is logged in
-			}
-		} break;
-	}
 
 	int choiceAsInt = choice - '0';
 	if (choiceAsInt <= app->GetCurrentAccount()->GetUsers().length() || choiceAsInt >= 0)

@@ -53,9 +53,9 @@ void createHardcodedTestData()
 	account->AddUser(u3);
 
 	// TODO: We need a login menu for accounts, for now we log in the only account
+	
 	app.LoginAccount("a", "a");
 }
-
 
 void main()
 {
