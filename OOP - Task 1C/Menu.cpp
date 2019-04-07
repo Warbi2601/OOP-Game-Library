@@ -18,7 +18,7 @@ void Menu::Paint()
 		Option('B', "Back");
 		Footer();
 
-		char choice = Utils::getCharFromUser();
+		char choice = toupper(Utils::getCharFromUser());
 
 		if (choice == 'B')
 		{
