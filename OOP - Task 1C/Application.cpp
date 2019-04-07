@@ -105,12 +105,15 @@ void Application::Save() {
 void Application::Load() {
 	string line;
 	ifstream fin;
-
+	
 	fin.open("data.txt", ios::in);
 	if (fin.fail()) cout << "\nError loading data.";
 	else {
+		int count = 0;
+		bool admin = true;
+		User* u1;
+		
 		while (getline(fin, line)) {
-			int count = 0;
 			if (line == "GAME") {
 
 				getline(fin, line);
@@ -132,7 +135,7 @@ void Application::Load() {
 			}
 
 			if (line == "ACCOUNT") {
-			
+
 				getline(fin, line);
 				Date date = line;
 
@@ -142,46 +145,107 @@ void Application::Load() {
 				getline(fin, line);
 				string pass = line;
 
-
 				AddAccount(new Account(email, pass, date));
+				admin = true;
 
-			}
+				/*bool admin = true;
 
-			if (line == "ACCOUNT-USER" && count == 0) {
-				if (count == 0) {
-
-					getline(fin, line);
-					Date date = line;
-
-					getline(fin, line);
-					string name = line;
-
-					getline(fin, line);
-					string pass = line;
-
-
-					getline(fin, line);
-					double credits = stod(line);
-
-
-					Player* u1 = new Admin(name, pass, date, credits);
+				while (line == "ACCOUNT-USER") {
 					Account* account = accounts[count];
-					account->AddUser(u1);
-					getline(fin, line);
-					if (line == "ACCOUNT-USER-GAME") {
-						getline(fin, line);
-						int game = stoi(line);
-						List<Game*> games = store.GetGames();
+					if (admin) {
+
 						getline(fin, line);
 						Date date = line;
 
 						getline(fin, line);
-						int hours = stoi(line);
+						string name = line;
 
-						u1->AddToLibrary(new LibraryItem(date, games[game]));
+						getline(fin, line);
+						string pass = line;
+
+
+						getline(fin, line);
+						double credits = stod(line);
+
+
+						Player* u1 = new Admin(name, pass, date, credits);
+						account->AddUser(u1);
+						admin = false;
+						getline(fin, line);
+						while (line == "ACCOUNT-USER-GAME") {
+							getline(fin, line);
+							int game = stoi(line);
+							List<Game*> games = store.GetGames();
+							getline(fin, line);
+							Date date = line;
+
+							getline(fin, line);
+							int hours = stoi(line);
+
+							u1->AddToLibrary(new LibraryItem(date, games[game]));
+						}
 					}
+					else {
+						getline(fin, line);
+						string name = line;
+
+						getline(fin, line);
+						string pass = line;
+
+						getline(fin, line);
+						Date date = line;
+
+						getline(fin, line);
+						double credits = stod(line);
+						Player* u1 = new Player(name, pass, date, credits);
+						Account* account = GetAccounts()[count];
+						account->AddUser(u1);
+						do
+						{
+							getline(fin, line);
+							int game = stoi(line);
+							List<Game*> games = store.GetGames();
+							getline(fin, line);
+							Date date = line;
+
+							getline(fin, line);
+							int hours = stoi(line);
+
+							u1->AddToLibrary(new LibraryItem(date, games[game]));
+
+						} while (line == "ACCOUNT-USER-GAME");
+
+					}
+					getline(fin, line);
+					*/
+			}
+
+			if (line == "ACCOUNT-USER") {
+				
+				if (admin) {
+
+					getline(fin, line);
+					Date date = line;
+
+					getline(fin, line);
+					string name = line;
+
+					getline(fin, line);
+					string pass = line;
+
+
+					getline(fin, line);
+					double credits = stod(line);
+
+
+					u1 = new Admin(name, pass, date, credits);
+					GetAccounts().last()->AddUser(u1);
+					admin = false;
 				}
-				else if (line == "ACCOUNT-USER") {
+				else {
+					getline(fin, line);
+					Date date = line;
+
 					getline(fin, line);
 					string name = line;
 
@@ -189,31 +253,30 @@ void Application::Load() {
 					string pass = line;
 
 					getline(fin, line);
-					Date date = line;
-
-					getline(fin, line);
 					double credits = stod(line);
-					Player* u1 = new Player(name, pass, date, credits);
-					Account* account = GetAccounts()[count];
-					account->AddUser(u1);
-
-					getline(fin, line);
-					if (line == "ACCOUNT-USER-GAME") {
-						getline(fin, line);
-						int game = stoi(line);
-						List<Game*> games = store.GetGames();
-						getline(fin, line);
-						Date date = line;
-
-						getline(fin, line);
-						int hours = stoi(line);
-
-						u1->AddToLibrary(new LibraryItem(date, games[game]));
-					}
+					u1 = new Player(name, pass, date, credits);
+					GetAccounts().last()->AddUser(u1);
 				}
-				count++;
 
+				
 			}
+
+			if (line == "ACCOUNT-USER-GAME") {
+				List <Game*> games = store.GetGames();
+				getline(fin, line);
+				int game = stoi(line);
+
+				getline(fin, line);
+				Date date = line;
+
+				getline(fin, line);
+				int hours = stoi(line);
+				u1 = GetAccounts().last()->GetUsers().last();
+				Player* player = static_cast<Player*>(u1);
+				player->AddToLibrary(new LibraryItem(date, games[game]));
+				
+			}
+			
 		}
 	}
 }
