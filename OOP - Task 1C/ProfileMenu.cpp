@@ -80,13 +80,17 @@ bool ProfileMenu::HandleChoice(char choice)
 			if (app->IsAdmin())
 			{
 				string username = Question("Enter a username");
-				User* usr;
-				for(int i = 0; i < app->GetCurrentAccount()->GetUsers().length(); i++)
+				User* usr = nullptr;
+				List<User*> users = app->GetCurrentAccount()->GetUsers();
+				for(int i = 0; i < users.length(); i++)
 				{
-					if (app->GetCurrentAccount()->GetUsers()[i]->GetUsername() == username)
+					Utils::ToUpper(username);
+					string userUsername = users[i]->GetUsername();
+					Utils::ToUpper(userUsername);
+					if (userUsername == username)
 					{
-						User* usr = app->GetCurrentAccount()->GetUsers()[i];
-						app->GetCurrentAccount()->GetUsers().deleteOne(usr);
+						User* usr = users[i];
+						users.deleteOne(usr);
 					}
 				}
 			}
