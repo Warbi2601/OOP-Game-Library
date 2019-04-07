@@ -24,16 +24,18 @@ Player& Player::AddToLibrary(LibraryItem * item)
 	return *this;
 }
 
-bool Player::PurchaseGame(Game* game) {
+bool Player::PurchaseGame(Game* game) 
+{
 	int cost = game->GetCost();
-
-	if (credits >= cost) {
+	
+	if (credits >= cost)
+	{
 		RemoveCredits(cost);
-		
 		AddToLibrary(new LibraryItem(Date::CurrentDate(), game));
 		return true;
 	}
-	else {
+	else
+	{
 		// Not enough credits!
 		return false;
 	}

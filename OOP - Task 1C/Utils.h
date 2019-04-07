@@ -12,7 +12,8 @@ class Utils
     static std::string getLineFromUser();
 	static char getCharFromUser();
 	template <class T>
-	static bool isType(T object, std::string type) {
+	static bool isType(T object, std::string type) 
+	{
 		return typeid(object).name() == type;
 	}
 	static bool StartsWith(const std::string&, const std::string&);
