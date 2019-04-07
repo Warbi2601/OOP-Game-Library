@@ -72,6 +72,8 @@ void Menu::Header()
 
 	cout << '\n';
 
+	Utils::ToUpper(title_);
+
 	cout << "  -= " << title_ << " =-  \n";
 	cout << '\n';
 }

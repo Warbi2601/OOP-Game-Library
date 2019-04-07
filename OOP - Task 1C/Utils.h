@@ -17,6 +17,5 @@ class Utils
 	}
 	static bool StartsWith(const std::string&, const std::string&);
 	static void ToUpper(std::string&);
+	static void ToUpperRecursive(std::string&, int);
 };
-
-// TODO: 2 versions of ToUpper
