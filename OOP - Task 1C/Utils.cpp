@@ -1,3 +1,4 @@
+
 #include "Utils.h"
 
 std::string Utils::getLineFromUser()

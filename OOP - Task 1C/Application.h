@@ -2,9 +2,11 @@
 
 #include "Account.h"
 #include "User.h"
+#include "Admin.h"
 #include "Store.h"
 #include "ListT.h"
 #include "Utils.h"
+#include "Admin.h"
 
 #include <iostream>
 #include <sstream>
@@ -32,6 +34,7 @@ class Application
 		bool LoginUser(const std::string& username, const std::string& password);
 		void LogoutUser();
 		bool IsPlayer();
+		bool IsAdmin();
 private:
 		Store store;
 		Account* currentAccount;

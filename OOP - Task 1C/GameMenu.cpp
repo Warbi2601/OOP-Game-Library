@@ -23,10 +23,11 @@ void GameMenu::OutputOptions()
 			LibraryItem* item = player->getLibaryItem(game);
 			Line("You own this game");
 			Line("Date purchased: " + item->getDate().ToString(item->getDate()));
+			Line("Play time: " + to_string(item->getTimePlayed()));
 		}
 		else
 		{
-			Line("Cost: " + game->GetCost());
+			Line("Cost: " + to_string(game->GetCost()));
 			Option('P', "Purchase game");
 		}
 	}
@@ -46,7 +47,13 @@ bool GameMenu::HandleChoice(char choice)
 				{
 					Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 					bool success = player->PurchaseGame(game);
-					// Line(std::string(success + ""));
+					
+					if (success) {
+						Line("Congratulations! You now own " + game->GetName());
+					}
+					else {
+						Line("You don't have enough credits!");
+					}
 				}
 			}
 		} break;

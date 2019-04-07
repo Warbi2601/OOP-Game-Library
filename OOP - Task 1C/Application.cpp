@@ -98,18 +98,32 @@ void Application::LogoutUser()
 	currentUser = nullptr;
 }
 
-void Application::Save() {
-
-}
+/*void Application::Save() {
+	ofstream fout;
+	fout.open("copy.txt");
+	for (int i = 0; i < GetStore().GetGames().length(); i++) {
+		fout << "GAME" << endl;
+		fout << to_string(i) << endl;
+		fout << 
+	}
+}*/
 
 void Application::Load() {
 	string line;
 	ifstream fin;
-	fin.open("Data.txt", ios::in);
+	
+	fin.open("data.txt", ios::in);
 	if (fin.fail()) cout << "\nError loading data.";
 	else {
+		int count = 0;
+		bool admin = true;
+		User* u1;
+		
 		while (getline(fin, line)) {
 			if (line == "GAME") {
+
+				getline(fin, line);
+				int id = stoi(line);
 
 				getline(fin, line);
 				string name = line;
@@ -123,9 +137,79 @@ void Application::Load() {
 				getline(fin, line);
 				int age = stoi(line);
 
-				GetStore().AddGame(new Game(name, desc, price, age));
+				GetStore().AddGame(new Game(id, name, desc, price, age));
 			}
 
+			if (line == "ACCOUNT") {
+
+				getline(fin, line);
+				Date date = line;
+
+				getline(fin, line);
+				string email = line;
+
+				getline(fin, line);
+				string pass = line;
+
+				AddAccount(new Account(email, pass, date));
+				admin = true;
+			}
+
+			if (line == "ACCOUNT-USER") {
+				
+				if (admin) {
+
+					getline(fin, line);
+					Date date = line;
+
+					getline(fin, line);
+					string name = line;
+
+					getline(fin, line);
+					string pass = line;
+
+					getline(fin, line);
+					double credits = stod(line);
+
+					u1 = new Admin(name, pass, date, credits);
+					GetAccounts().last()->AddUser(u1);
+					admin = false;
+				}
+				else {
+					getline(fin, line);
+					Date date = line;
+
+					getline(fin, line);
+					string name = line;
+
+					getline(fin, line);
+					string pass = line;
+
+					getline(fin, line);
+					double credits = stod(line);
+					u1 = new Player(name, pass, date, credits);
+					GetAccounts().last()->AddUser(u1);
+				}
+				
+			}
+
+			if (line == "ACCOUNT-USER-GAME") {
+				List <Game*> games = store.GetGames();
+				getline(fin, line);
+				int game = stoi(line);
+
+				getline(fin, line);
+				Date date = line;
+
+				getline(fin, line);
+				int hours = stoi(line);
+
+				u1 = GetAccounts().last()->GetUsers().last();
+				Player* player = static_cast<Player*>(u1);
+				player->AddToLibrary(new LibraryItem(date, games[game], hours));
+				
+			}
+			
 		}
 	}
 }
@@ -139,6 +223,16 @@ bool Application::IsPlayer() {
 	if (IsUserLoggedIn())
 	{
 		if (Player *p = dynamic_cast<Player *>(GetCurrentUser())) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Application::IsAdmin() {
+	if (IsUserLoggedIn())
+	{
+		if (Admin *p = dynamic_cast<Admin *>(GetCurrentUser())) {
 			return true;
 		}
 	}
