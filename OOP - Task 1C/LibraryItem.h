@@ -12,6 +12,7 @@ class LibraryItem
 		const Game* getGame();
 		const Date getDate();
 		int getTimePlayed();
+		void IncrimentTimePlayed(int time);
 	private:
 		const Game* game;
 		const Date purchased;

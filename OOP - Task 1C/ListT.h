@@ -230,6 +230,7 @@ void List<T>::deleteOne(const T& item)
 template <class T>
 int List<T>::length() const
 {
+	assert(!isEmpty());
     int size = 0;
 
     for (Node<T>* pn = head_; pn != nullptr; pn = pn->next_)

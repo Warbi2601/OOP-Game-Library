@@ -18,4 +18,5 @@ class Utils
 	static bool StartsWith(const std::string&, const std::string&);
 	static void ToUpper(std::string&);
 	static void ToUpperRecursive(std::string&, int);
+	static int getRandomNumber(int lower, int upper);
 };

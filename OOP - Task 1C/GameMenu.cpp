@@ -13,9 +13,25 @@ void GameMenu::OutputOptions()
 	assert(game != nullptr);
 
 	Line(game->GetDescription());
-	Line("Cost: " + game->GetCost());
+	Line("");
 
-	Option('P', "Purchase game");
+	if (app->IsUserLoggedIn())
+	{
+		Player* player = static_cast<Player*>(app->GetCurrentUser());
+		if (player->ownsGame(game))
+		{
+			LibraryItem* item = player->getLibaryItem(game);
+			Line("You own this game");
+			Line("Date purchased: " + item->getDate().ToString(item->getDate()));
+			Line("Play time: " + item->getTimePlayed());
+		}
+		else
+		{
+			Line("Cost: " + game->GetCost());
+			Option('P', "Purchase game");
+		}
+	}
+
 }
 
 bool GameMenu::HandleChoice(char choice)

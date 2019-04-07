@@ -22,15 +22,15 @@ void ProfileMenu::OutputOptions()
 	{
 		LibraryItem* itm = player->GetLibrary()[i];
 		string txt = itm->getGame()->GetName() + " (" + std::to_string(itm->getTimePlayed()) + ")";
-		Line(txt);
+		Option(i + 1,txt);
 	}
-
+	string boobies = typeid(player).name();
 	// if the user is an admin display more options..
-	if (Utils::isType(app->GetCurrentUser(), "Admin"))
+	if (typeid(player).name() == "Admin")
 	{
 		Line(""); // newLine
 
-		Line("Games:");
+		Line("Admin:");
 		Option('A', "Add new user");
 		Option('R', "Remove user");
 		Option('G', "Guest per-game access");
@@ -66,7 +66,10 @@ bool ProfileMenu::HandleChoice(char choice)
 		{
 			if (Utils::isType(app->GetCurrentUser(), "Admin"))
 			{
-
+				string username = Question("Enter a username");
+				string password = Question("Enter a password");
+				User* newUser = new User(username, password, Date::CurrentDate());
+				app->GetCurrentAccount()->AddUser(newUser);
 			}
 		} break;
 		case 'R': //Remove user
@@ -85,6 +88,16 @@ bool ProfileMenu::HandleChoice(char choice)
 		} break;
 
 	}
+
+	//Game add time random choice
+	int index = choice - '1';
+
+	if (index >= 0 && index < player->GetLibrary().length())
+	{
+		LibraryItem* selected = player->GetLibrary()[index];
+		selected->IncrimentTimePlayed(Utils::getRandomNumber(10,100));
+	}
+
 
 	return false;
 }
