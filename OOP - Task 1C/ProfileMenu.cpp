@@ -95,7 +95,7 @@ bool ProfileMenu::HandleChoice(char choice)
 	if (index >= 0 && index < player->GetLibrary().length())
 	{
 		LibraryItem* selected = player->GetLibrary()[index];
-		selected->IncrimentTimePlayed(Utils::getRandomNumber(10,100));
+		selected->IncrementTimePlayed(Utils::getRandomNumber(10,100));
 	}
 
 

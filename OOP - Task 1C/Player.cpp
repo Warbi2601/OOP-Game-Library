@@ -30,7 +30,7 @@ bool Player::PurchaseGame(Game* game) {
 	if (credits >= cost) {
 		RemoveCredits(cost);
 		
-		AddToLibrary(new LibraryItem(Date::CurrentDate(), game));
+		AddToLibrary(new LibraryItem(Date::CurrentDate(), game,0));
 		return true;
 	}
 	else {

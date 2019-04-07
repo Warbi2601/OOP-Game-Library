@@ -98,9 +98,15 @@ void Application::LogoutUser()
 	currentUser = nullptr;
 }
 
-void Application::Save() {
-
-}
+/*void Application::Save() {
+	ofstream fout;
+	fout.open("copy.txt");
+	for (int i = 0; i < GetStore().GetGames().length(); i++) {
+		fout << "GAME" << endl;
+		fout << to_string(i) << endl;
+		fout << 
+	}
+}*/
 
 void Application::Load() {
 	string line;
@@ -147,77 +153,6 @@ void Application::Load() {
 
 				AddAccount(new Account(email, pass, date));
 				admin = true;
-
-				/*bool admin = true;
-
-				while (line == "ACCOUNT-USER") {
-					Account* account = accounts[count];
-					if (admin) {
-
-						getline(fin, line);
-						Date date = line;
-
-						getline(fin, line);
-						string name = line;
-
-						getline(fin, line);
-						string pass = line;
-
-
-						getline(fin, line);
-						double credits = stod(line);
-
-
-						Player* u1 = new Admin(name, pass, date, credits);
-						account->AddUser(u1);
-						admin = false;
-						getline(fin, line);
-						while (line == "ACCOUNT-USER-GAME") {
-							getline(fin, line);
-							int game = stoi(line);
-							List<Game*> games = store.GetGames();
-							getline(fin, line);
-							Date date = line;
-
-							getline(fin, line);
-							int hours = stoi(line);
-
-							u1->AddToLibrary(new LibraryItem(date, games[game]));
-						}
-					}
-					else {
-						getline(fin, line);
-						string name = line;
-
-						getline(fin, line);
-						string pass = line;
-
-						getline(fin, line);
-						Date date = line;
-
-						getline(fin, line);
-						double credits = stod(line);
-						Player* u1 = new Player(name, pass, date, credits);
-						Account* account = GetAccounts()[count];
-						account->AddUser(u1);
-						do
-						{
-							getline(fin, line);
-							int game = stoi(line);
-							List<Game*> games = store.GetGames();
-							getline(fin, line);
-							Date date = line;
-
-							getline(fin, line);
-							int hours = stoi(line);
-
-							u1->AddToLibrary(new LibraryItem(date, games[game]));
-
-						} while (line == "ACCOUNT-USER-GAME");
-
-					}
-					getline(fin, line);
-					*/
 			}
 
 			if (line == "ACCOUNT-USER") {
@@ -271,7 +206,7 @@ void Application::Load() {
 
 				u1 = GetAccounts().last()->GetUsers().last();
 				Player* player = static_cast<Player*>(u1);
-				player->AddToLibrary(new LibraryItem(date, games[game]));
+				player->AddToLibrary(new LibraryItem(date, games[game], hours));
 				
 			}
 			
