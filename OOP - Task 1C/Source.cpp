@@ -48,6 +48,7 @@ void createHardcodedTestData()
 	app.AddAccount(new Account("a", "a", Date(16, 6, 2018)));
 
 	Account* account = app.GetAccounts()[0];
+	
 	account->AddUser(u1);
 	account->AddUser(u2);
 	account->AddUser(u3);

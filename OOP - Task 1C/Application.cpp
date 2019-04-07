@@ -138,7 +138,7 @@ void Application::LogoutAccount()
 bool Application::IsPlayer() {
 	if (IsUserLoggedIn())
 	{
-		return Utils::isType(GetCurrentUser(), "Player");
+		return Utils::isType(*GetCurrentUser(), "Player");
 	}
 	return false;
 }
