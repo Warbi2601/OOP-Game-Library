@@ -233,10 +233,8 @@ void Application::Load() {
 					getline(fin, line);
 					string pass = line;
 
-
 					getline(fin, line);
 					double credits = stod(line);
-
 
 					u1 = new Admin(name, pass, date, credits);
 					GetAccounts().last()->AddUser(u1);
@@ -271,6 +269,7 @@ void Application::Load() {
 
 				getline(fin, line);
 				int hours = stoi(line);
+
 				u1 = GetAccounts().last()->GetUsers().last();
 				Player* player = static_cast<Player*>(u1);
 				player->AddToLibrary(new LibraryItem(date, games[game]));
