@@ -15,6 +15,8 @@ void ProfileMenu::OutputOptions()
 	Option('P', "Purchase 100 credit");
 
 	Line("");  // newLine
+	Option('F', "Friends");
+	Line("");  // newLine
 
 	Line("Owned games:");
 	//for loop which displays all games...
@@ -23,17 +25,14 @@ void ProfileMenu::OutputOptions()
 		LibraryItem* itm = player->GetLibrary()[i];
 		string txt = itm->getGame()->GetName() + " (" + std::to_string(itm->getTimePlayed()) + ")";
 		Option(i + 1,txt);
-	}
-	string boobies = typeid(player).name();
-	// if the user is an admin display more options..
-	if (typeid(player).name() == "Admin")
+	}	// if the user is an admin display more options..
+	if (app->IsAdmin())
 	{
 		Line(""); // newLine
 
 		Line("Admin:");
 		Option('A', "Add new user");
 		Option('R', "Remove user");
-		Option('G', "Guest per-game access");
 	}
 
 
@@ -59,12 +58,16 @@ bool ProfileMenu::HandleChoice(char choice)
 		{
 			player->AddCredits(100);
 		} break;
+		case 'F': //Friends..
+		{
+
+		} break;
 
 
 		//edit user settings (All must ensure the user is an admin first...)s
 		case 'A': //Add user
 		{
-			if (Utils::isType(app->GetCurrentUser(), "Admin"))
+			if (app->IsAdmin())
 			{
 				string username = Question("Enter a username");
 				string password = Question("Enter a password");
@@ -74,16 +77,18 @@ bool ProfileMenu::HandleChoice(char choice)
 		} break;
 		case 'R': //Remove user
 		{
-			if (Utils::isType(app->GetCurrentUser(), "Admin"))
+			if (app->IsAdmin())
 			{
-
-			}
-		} break;
-		case 'G': //Guest per access game
-		{
-			if (Utils::isType(app->GetCurrentUser(), "Admin"))
-			{
-
+				string username = Question("Enter a username");
+				User* usr;
+				for(int i = 0; i < app->GetCurrentAccount()->GetUsers().length(); i++)
+				{
+					if (app->GetCurrentAccount()->GetUsers()[i]->GetUsername() == username)
+					{
+						User* usr = app->GetCurrentAccount()->GetUsers()[i];
+						app->GetCurrentAccount()->GetUsers().deleteOne(usr);
+					}
+				}
 			}
 		} break;
 
@@ -95,7 +100,7 @@ bool ProfileMenu::HandleChoice(char choice)
 	if (index >= 0 && index < player->GetLibrary().length())
 	{
 		LibraryItem* selected = player->GetLibrary()[index];
-		selected->IncrimentTimePlayed(Utils::getRandomNumber(10,100));
+		selected->IncrimentTimePlayed(Utils::getRandomNumber(10,60));
 	}
 
 
