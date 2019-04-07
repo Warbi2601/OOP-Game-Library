@@ -5,6 +5,7 @@
 #include "Application.h"
 #include "LibraryItem.h"
 #include "LoginMenu.h"
+#include "User.h"
 
 
 class ProfileMenu : public Menu

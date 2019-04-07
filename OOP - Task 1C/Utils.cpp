@@ -40,3 +40,9 @@ void Utils::ToUpperRecursive(std::string& stringToChange, int position)
 	}
 }
 
+int Utils::getRandomNumber(int lower, int upper)
+{
+	assert(lower < upper);
+	return rand() % upper + lower;
+}
+

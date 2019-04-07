@@ -7,13 +7,18 @@ StoreMenu::StoreMenu(const std::string& title, Application * app, List<Game*> ga
 
 void StoreMenu::OutputOptions()
 {
-	if (gamesToDisplay.isEmpty()) Line("No results found.");
-
 	Option('S', "Search the store");
-	for (int i = 0; i < gamesToDisplay.length(); i++)
+	if (gamesToDisplay.isEmpty())
 	{
-		// adding 1 so the display is nicer for the user
-		Option(i + 1, gamesToDisplay[i]->GetName());
+		Line("No results found.");
+	}
+	else
+	{
+		for (int i = 0; i < gamesToDisplay.length(); i++)
+		{
+			// adding 1 so the display is nicer for the user
+			Option(i + 1, gamesToDisplay[i]->GetName());
+		}
 	}
 }
 
@@ -47,10 +52,10 @@ bool StoreMenu::HandleChoice(char choice)
 	// this puts '1' as 0, '2' as 1, '3' as 2, '4' as 3, etc.
 	// this reverses the + 1 above and lets us do the range check below
 	int index = choice - '1';
-	Game* selected = app->GetStore().GetGames()[index];
 
 	if (index >= 0 && index < app->GetStore().GetGames().length())
 	{
+		Game* selected = gamesToDisplay[index];
 		GameMenu(selected->GetName(), app, selected);
 	}
 

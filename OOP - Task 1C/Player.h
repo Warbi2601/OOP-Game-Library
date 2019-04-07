@@ -19,6 +19,9 @@ class Player : public User
 		double GetCredits() const;
 		void AddCredits(double amount);
 		void RemoveCredits(double amount);
+		LibraryItem* getLibaryItem(Game* game);
+
+		bool ownsGame(Game* game);
 	private:
 		List<LibraryItem*> library;
 		double credits;
