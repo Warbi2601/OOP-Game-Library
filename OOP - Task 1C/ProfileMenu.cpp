@@ -18,7 +18,7 @@ void ProfileMenu::OutputOptions()
 
 	Line("Owned games:");
 	//for loop which displays all games...
-	for(int i = 0; i < player->GetLibrary().length(); i++)
+	for(int i = 0; i < player->GetLibrary().size(); i++)
 	{
 		LibraryItem* itm = player->GetLibrary()[i];
 		string txt = itm->getGame()->GetName() + " (" + std::to_string(itm->getTimePlayed()) + ")";
@@ -92,7 +92,7 @@ bool ProfileMenu::HandleChoice(char choice)
 	//Game add time random choice
 	int index = choice - '1';
 
-	if (index >= 0 && index < player->GetLibrary().length())
+	if (index >= 0 && index < player->GetLibrary().size())
 	{
 		LibraryItem* selected = player->GetLibrary()[index];
 		selected->IncrimentTimePlayed(Utils::getRandomNumber(10,100));

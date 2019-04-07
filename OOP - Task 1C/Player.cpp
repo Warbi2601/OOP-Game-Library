@@ -13,14 +13,14 @@ Player::~Player()
 	//}
 }
 
-List<LibraryItem*> Player::GetLibrary() const
+vector<LibraryItem*> Player::GetLibrary() const
 {
 	return library;
 }
 
 Player& Player::AddToLibrary(LibraryItem * item)
 {
-	library.addAtEnd(item);
+	library.push_back(item);
 	return *this;
 }
 
@@ -64,7 +64,7 @@ void Player::RemoveCredits(double amount)
 
 bool Player::ownsGame(Game * game)
 {
-	for (int i = 0; i < library.length(); i++)
+	for (int i = 0; i < library.size(); i++)
 	{
 		LibraryItem* item = library[i];
 		if (item->getGame() == game) return true;
@@ -74,9 +74,9 @@ bool Player::ownsGame(Game * game)
 
 LibraryItem* Player::getLibaryItem(Game* game)
 {
-	assert(library.isEmpty() == false);
+	assert(library.size() > 0);
 
-	for (int i = 0; i < library.length(); i++)
+	for (int i = 0; i < library.size(); i++)
 	{
 		LibraryItem* item = library[i];
 		if (item->getGame() == game) return item;
