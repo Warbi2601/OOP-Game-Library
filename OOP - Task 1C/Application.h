@@ -2,6 +2,7 @@
 
 #include "Account.h"
 #include "User.h"
+#include "Admin.h"
 #include "Store.h"
 #include "ListT.h"
 #include "Utils.h"

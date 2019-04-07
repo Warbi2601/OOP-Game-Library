@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(const std::string& username, const std::string& password, const Date& created) : User(username, password, created)
+Player::Player(const std::string& username, const std::string& password, const Date& created, double& credits) : User(username,password,created),credits(credits)
 {
 }
 
@@ -31,7 +31,8 @@ bool Player::PurchaseGame(Game* game)
 	if (credits >= cost)
 	{
 		RemoveCredits(cost);
-		AddToLibrary(new LibraryItem(Date::CurrentDate(), game));
+		
+		AddToLibrary(new LibraryItem(Date::CurrentDate(), game,0));
 		return true;
 	}
 	else

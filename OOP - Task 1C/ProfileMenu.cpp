@@ -102,7 +102,5 @@ bool ProfileMenu::HandleChoice(char choice)
 		LibraryItem* selected = player->GetLibrary()[index];
 		selected->IncrimentTimePlayed(Utils::getRandomNumber(10,60));
 	}
-
-
 	return false;
 }

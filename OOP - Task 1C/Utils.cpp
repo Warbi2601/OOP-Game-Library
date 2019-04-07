@@ -1,3 +1,4 @@
+
 #include "Utils.h"
 
 std::string Utils::getLineFromUser()
@@ -44,3 +45,4 @@ int Utils::getRandomNumber(int lower, int upper)
 	assert(lower < upper);
 	return rand() % upper + lower;
 }
+

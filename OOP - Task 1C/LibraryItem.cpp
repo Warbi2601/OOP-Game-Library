@@ -1,7 +1,7 @@
 #include "LibraryItem.h"
 #include "Date.h"
 
-LibraryItem::LibraryItem(const Date& date, Game* game) : purchased(date), game(game)
+LibraryItem::LibraryItem(const Date& date, Game* game, int time) : purchased(date), game(game), timePlayed(time)
 {
 }
 
@@ -24,7 +24,7 @@ int LibraryItem::getTimePlayed()
 	return timePlayed;
 }
 
-void LibraryItem::IncrimentTimePlayed(int time)
+void LibraryItem::IncrementTimePlayed(int time)
 {
 	timePlayed += time;
 }
