@@ -13,7 +13,7 @@
 // TODO: Remove from global scope once menu system is integrated
 Application app;
 
-void createHardcodedTestData()
+/*void createHardcodedTestData()
 {
 	// Setup store with some games
 	app.GetStore().AddGame(new Game("The Witness", "Explore a nice island and solve puzzles.", 2999, 5))
@@ -56,7 +56,7 @@ void createHardcodedTestData()
 	// TODO: We need a login menu for accounts, for now we log in the only account
 	
 	app.LoginAccount("a", "a");
-}
+}*/
 
 void main()
 {
