@@ -46,17 +46,14 @@ bool GameMenu::HandleChoice(char choice)
 				{
 					Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 					bool success = player->PurchaseGame(game);
-					cout << success;
-					// Remove cost
-					// game.GetCost();
+					
+					if (success) {
+						Line("Congratulations! You now own " + game->GetName());
+					}
+					else {
+						Line("You don't have enough credits!");
+					}
 				}
-			}
-			else
-			{
-				// this would need to go to a LoginMenu - similar to StoreMenu
-				// instead we just set logged in to true on the main app object
-
-				//app->LogIn();
 			}
 		} break;
 	}
