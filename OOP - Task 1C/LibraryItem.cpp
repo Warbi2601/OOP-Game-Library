@@ -23,3 +23,8 @@ int LibraryItem::getTimePlayed()
 {
 	return timePlayed;
 }
+
+void LibraryItem::IncrimentTimePlayed(int time)
+{
+	timePlayed += time;
+}

@@ -59,3 +59,24 @@ void Player::RemoveCredits(double amount)
 		credits = 0;
 	}
 }
+
+bool Player::ownsGame(Game * game)
+{
+	for (int i = 0; i < library.length(); i++)
+	{
+		LibraryItem* item = library[i];
+		if (item->getGame() == game) return true;
+	}
+	return false;
+}
+
+LibraryItem * Player::getLibaryItem(Game * game)
+{
+	assert(!library.isEmpty());
+	for (int i = 0; i < library.length(); i++)
+	{
+		LibraryItem* item = library[i];
+		if (item->getGame() == game) return item;
+	}
+	return nullptr;
+}

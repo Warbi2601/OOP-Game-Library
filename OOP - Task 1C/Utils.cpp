@@ -24,3 +24,9 @@ void Utils::ToUpper(std::string& stringToChange)
 		stringToChange[i] = toupper(stringToChange[i]);
 	}
 }
+
+int Utils::getRandomNumber(int lower, int upper)
+{
+	assert(lower < upper);
+	return rand() % upper + lower;
+}
