@@ -83,3 +83,29 @@ LibraryItem* Player::getLibaryItem(Game* game)
 	}
 	return nullptr;
 }
+
+List<Player*> Player::GetFriends() const
+{
+	return friends;
+}
+
+void Player::AddFriend(Player* newFriend) {
+	friends.addAtEnd(newFriend);
+}
+
+void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
+{
+	// Swaps the game owner
+	removeGameFromLibrary(game);
+	receivingFriend->AddToLibrary(game);
+
+	//Handles the credits transaction
+	double gameCost = (game->getGame()->GetCost()) / 2;
+	credits += gameCost;
+	receivingFriend->AddCredits(gameCost);
+}
+
+void Player::removeGameFromLibrary(LibraryItem* gameToRemove)
+{
+	library.deleteOne(gameToRemove);
+}

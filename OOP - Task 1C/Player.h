@@ -20,9 +20,14 @@ class Player : public User
 		void AddCredits(double amount);
 		void RemoveCredits(double amount);
 		LibraryItem* getLibaryItem(Game* game);
-
+		List<Player*> GetFriends() const;
+		void AddFriend(Player* newFriend);
+		void SellGameToFriend(Player* receivingFriend, LibraryItem* game);
 		bool ownsGame(Game* game);
+
 	private:
 		List<LibraryItem*> library;
+		List<Player*> friends;
 		double credits;
+		void removeGameFromLibrary(LibraryItem*);
 };
