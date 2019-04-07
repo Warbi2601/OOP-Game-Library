@@ -24,3 +24,17 @@ void Utils::ToUpper(std::string& stringToChange)
 		stringToChange[i] = toupper(stringToChange[i]);
 	}
 }
+
+void Utils::ToUpperRecursive(std::string& stringToChange, int position)
+{
+	if (position < stringToChange.length())
+	{
+		stringToChange[position] = toupper(stringToChange[position]);
+		position++;
+		ToUpperRecursive(stringToChange, position);
+	}
+	else
+	{
+		return;
+	}
+}
