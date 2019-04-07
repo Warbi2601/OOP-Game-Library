@@ -255,7 +255,6 @@ void Application::Load() {
 					u1 = new Player(name, pass, date, credits);
 					GetAccounts().last()->AddUser(u1);
 				}
-
 				
 			}
 
