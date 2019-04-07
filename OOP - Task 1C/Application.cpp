@@ -138,7 +138,9 @@ void Application::LogoutAccount()
 bool Application::IsPlayer() {
 	if (IsUserLoggedIn())
 	{
-		return Utils::isType(*GetCurrentUser(), "Player");
+		if (Player *p = dynamic_cast<Player *>(GetCurrentUser())) {
+			return true;
+		}
 	}
 	return false;
 }

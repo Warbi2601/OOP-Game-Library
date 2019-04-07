@@ -31,9 +31,7 @@ bool GameMenu::HandleChoice(char choice)
 				{
 					Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 					bool success = player->PurchaseGame(game);
-					cout << success;
-					// Remove cost
-					// game.GetCost();
+					// Line(std::string(success + ""));
 				}
 			}
 			else
