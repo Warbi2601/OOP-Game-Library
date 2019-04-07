@@ -13,7 +13,7 @@ void GameMenu::OutputOptions()
 	assert(game != nullptr);
 
 	Line(game->GetDescription());
-	Line("");
+	Line(" ");
 
 	if (app->IsUserLoggedIn())
 	{
@@ -23,7 +23,6 @@ void GameMenu::OutputOptions()
 			LibraryItem* item = player->getLibaryItem(game);
 			Line("You own this game");
 			Line("Date purchased: " + item->getDate().ToString(item->getDate()));
-			Line("Play time: " + item->getTimePlayed());
 		}
 		else
 		{

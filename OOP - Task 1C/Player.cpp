@@ -70,9 +70,10 @@ bool Player::ownsGame(Game * game)
 	return false;
 }
 
-LibraryItem * Player::getLibaryItem(Game * game)
+LibraryItem* Player::getLibaryItem(Game* game)
 {
-	assert(!library.isEmpty());
+	assert(library.isEmpty() == false);
+
 	for (int i = 0; i < library.length(); i++)
 	{
 		LibraryItem* item = library[i];

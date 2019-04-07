@@ -55,7 +55,7 @@ bool StoreMenu::HandleChoice(char choice)
 
 	if (index >= 0 && index < app->GetStore().GetGames().length())
 	{
-		Game* selected = app->GetStore().GetGames()[index];
+		Game* selected = gamesToDisplay[index];
 		GameMenu(selected->GetName(), app, selected);
 	}
 
