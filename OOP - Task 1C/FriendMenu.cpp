@@ -64,19 +64,24 @@ bool FriendMenu::HandleChoice(char choice)
 			Player* player = static_cast<Player*>(app->GetCurrentUser());
 
 			List<Player*> friends = player->GetFriends();
-
-			for (int i = 0; i < friends.length(); i++)
+			if (!friends.isEmpty())
 			{
-				string foundUsername = friends[i]->GetUsername();
-				Utils::ToUpper(foundUsername);
-
-				if (foundUsername == usernameSearch)
+				for (int i = 0; i < friends.length(); i++)
 				{
-					friends.deleteOne(friends[i]);
-				}
-			}
+					string foundUsername = friends[i]->GetUsername();
+					Utils::ToUpper(foundUsername);
 
-			if (!flag) Question("No user found with that name. Press any key to continue");
+					if (foundUsername == usernameSearch)
+					{
+						player->GetFriends().deleteOne(friends[i]);
+						Question("User removed, you can add them again at any time. Press any key to continue");
+						flag = true;
+						break;
+					}
+
+				}
+				if (!flag) Question("No user found with that name. Press any key to continue");
+			}
 		} break;
 	}
 
