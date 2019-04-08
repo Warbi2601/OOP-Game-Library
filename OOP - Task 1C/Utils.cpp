@@ -67,3 +67,24 @@ bool Utils::isUniqueUsername(List<Account*> accounts, std::string a)
 	}
 	return true;
 }
+
+Player* Utils::getPlayerByUsername(List<Account*> accounts, std::string username)
+{
+	Utils::ToUpper(username);
+
+	for (int i = 0; i < accounts.length(); i++)
+	{
+		List<User*> users = accounts[i]->GetUsers();
+
+		for (int x = 0; x < users.length(); x++)
+		{
+			string userUsername = users[x]->GetUsername();
+			Utils::ToUpper(userUsername);
+
+			if (userUsername == username)
+			{
+				return static_cast<Player*>(users[x]);;
+			}
+		}
+	}
+}
