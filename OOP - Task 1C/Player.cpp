@@ -18,7 +18,7 @@ struct {
 	}
 } compareNames;
 
-Player::Player(const std::string& username, const std::string& password, const Date& created,const double& credits) : User(username, password, created, credits)
+Player::Player(const std::string& username, const std::string& password, const Date& created, double& credits) : User(username, password, created)
 {
 
 }
@@ -127,14 +127,18 @@ void Player::AddFriend(Player* newFriend) {
 
 void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 {
-	// Swaps the game owner
-	removeGameFromLibrary(game);
-	receivingFriend->AddToLibrary(game);
-
-	//Handles the credits transaction
 	double gameCost = (game->getGame()->GetCost()) / 2;
-	credits += gameCost;
-	receivingFriend->AddCredits(gameCost);
+
+	if(receivingFriend->GetCredits() > gameCost)
+	{
+		// Swaps the game owner
+		removeGameFromLibrary(game);
+		receivingFriend->AddToLibrary(game);
+
+		//Handles the credits transaction
+		credits += gameCost;
+		receivingFriend->RemoveCredits(gameCost);
+	}
 }
 
 void Player::removeGameFromLibrary(LibraryItem* gameToRemove)
