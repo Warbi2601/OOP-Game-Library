@@ -27,8 +27,3 @@ int Game::GetCost() const
 {
 	return cost;
 }
-
-int Game::GetRating() const {
-
-	return ageRating;
-}

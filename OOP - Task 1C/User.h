@@ -14,7 +14,6 @@ class User
 
 		const std::string& GetUsername() const;
 		const std::string& GetPassword() const;
-		Date GetCreated() const;
 	private:
 		std::string username;
 		std::string password;

@@ -78,7 +78,6 @@ double Player::GetCredits() const
 	return credits;
 }
 
-
 void Player::AddCredits(double amount)
 {
 	assert(amount > 0);

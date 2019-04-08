@@ -98,18 +98,15 @@ void Application::LogoutUser()
 	currentUser = nullptr;
 }
 
-void Application::Save() {
+/*void Application::Save() {
 	ofstream fout;
 	fout.open("copy.txt");
 	for (int i = 0; i < GetStore().GetGames().length(); i++) {
-		Game* game = GetStore().GetGames()[i];
 		fout << "GAME" << endl;
-		fout << game->GetID() << endl;
-		fout << game->GetName() << endl;
-		fout << game->GetDescription() << endl;
-		fout << game->GetCost() << endl;
-		fout << game->GetRating() << endl;
+		fout << to_string(i) << endl;
+		fout << 
 	}
+<<<<<<< HEAD
 
 	for (int i = 0; i < GetAccounts().length(); i++) {
 		Account* account = GetAccounts()[i];
@@ -135,6 +132,9 @@ void Application::Save() {
 		}
 	}
 }
+=======
+}*/
+>>>>>>> parent of 9872ee5... data stuff
 
 void Application::Load() {
 	string line;

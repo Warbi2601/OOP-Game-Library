@@ -14,7 +14,6 @@ class Account
 
 		std::string GetEmail() const;
 		std::string GetPassword() const;
-		Date GetCreated() const;
 	private:
 		std::string email;
 		std::string password;
