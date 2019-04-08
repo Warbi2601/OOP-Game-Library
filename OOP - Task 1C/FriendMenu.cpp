@@ -13,10 +13,10 @@ void FriendMenu::OutputOptions()
 
 	if (!player->GetFriends().isEmpty())
 	{
-		Line("\nFriends list:");
+		Line("\n  Friends list:");
 		for (int i = 0; i < player->GetFriends().length(); i++)
 		{
-			Option(i, player->GetFriends()[i]->GetUsername());
+			Option(i + 1, player->GetFriends()[i]->GetUsername());
 		}
 	}
 	else Line("You dont have any friends yet.");
@@ -77,9 +77,8 @@ bool FriendMenu::HandleChoice(char choice)
 
 		if (index >= 0 && index < player->GetFriends().length())
 		{
-			//Open a menu which allows you to choose a game to sell to selected player... (aka should pass the player*)
-
-			//player->GetFriends()[index]
+			//Open a menu which allows you to choose a game to sell to selected player..
+			GiftFriendMenu("Sell a game to friend", app, player->GetFriends()[index]);
 		}
 	}
 	return false;

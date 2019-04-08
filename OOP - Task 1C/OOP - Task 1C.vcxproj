@@ -153,6 +153,7 @@
     <ClCompile Include="FriendMenu.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMenu.cpp" />
+    <ClCompile Include="GiftFriendMenu.cpp" />
     <ClCompile Include="LibraryItem.cpp" />
     <ClCompile Include="LoginMenu.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="FriendMenu.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameMenu.h" />
+    <ClInclude Include="GiftFriendMenu.h" />
     <ClInclude Include="LibraryItem.h" />
     <ClInclude Include="LoginMenu.h" />
     <ClInclude Include="MainMenu.h" />
