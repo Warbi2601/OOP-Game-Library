@@ -23,11 +23,11 @@ bool FriendMenu::HandleChoice(char choice)
 	{
 		case 'A': //Add friend
 		{
-
+			Question("Enter username");
 		} break;
 		case 'R': //Remove friend
 		{
-
+			Question("Enter username");
 		} break;
 
 	}
