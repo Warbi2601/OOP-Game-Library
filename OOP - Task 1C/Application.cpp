@@ -106,7 +106,6 @@ void Application::LogoutUser()
 		fout << to_string(i) << endl;
 		fout << 
 	}
-<<<<<<< HEAD
 
 	for (int i = 0; i < GetAccounts().length(); i++) {
 		Account* account = GetAccounts()[i];
@@ -114,6 +113,7 @@ void Application::LogoutUser()
 		fout << account->GetCreated().ToString(account->GetCreated()) << endl;
 		fout << account->GetEmail() << endl;
 		fout << account->GetPassword() << endl;
+
 		for (int i = 0; i < account->GetUsers().length(); i++) {
 			Player* user = static_cast<Player*>(account->GetUsers()[i]);
 			fout << "ACCOUNT-USER" << endl;
@@ -132,9 +132,9 @@ void Application::LogoutUser()
 		}
 	}
 }
-=======
+
 }*/
->>>>>>> parent of 9872ee5... data stuff
+
 
 void Application::Load() {
 	string line;

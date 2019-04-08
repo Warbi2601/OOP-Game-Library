@@ -2,21 +2,21 @@
 
 // I tried to put this in Utils and declare them as static
 // but he compiler wasn't having any of it -Marcus
-struct {
-	bool operator()(LibraryItem* a, LibraryItem* b) const
-	{
-		// This was throwing an error, so I'll just return false...
-		// return a->getDate() < b->getDate();
-		return false;
-	}
-} compareDates;
-struct {
-	bool operator()(LibraryItem* a, LibraryItem* b) const
-	{
-		// This works perfectly
-		return a->getGame()->GetName() < b->getGame()->GetName();
-	}
-} compareNames;
+//struct {
+//	bool operator()(LibraryItem* a, LibraryItem* b) const
+//	{
+//		// This was throwing an error, so I'll just return false...
+//		// return a->getDate() < b->getDate();
+//		return false;
+//	}
+//} compareDates;
+//struct {
+//	bool operator()(LibraryItem* a, LibraryItem* b) const
+//	{
+//		// This works perfectly
+//		return a->getGame()->GetName() < b->getGame()->GetName();
+//	}
+//} compareNames;
 
 Player::Player(const std::string& username, const std::string& password, const Date& created,const double& credits) : User(username, password, created, credits)
 {
