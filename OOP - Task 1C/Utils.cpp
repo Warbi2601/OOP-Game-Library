@@ -62,7 +62,7 @@ bool Utils::isUniqueUsername(List<Account*> accounts, string a)
 
 			if (userUsername == a)
 			{
-				isFound == false;
+				isFound = false;
 				return false;
 			}
 		}

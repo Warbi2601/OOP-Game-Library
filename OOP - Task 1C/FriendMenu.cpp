@@ -38,7 +38,7 @@ bool FriendMenu::HandleChoice(char choice)
 
 	int index = choice - '1';
 
-	if (index >= 0 && index < player->GetFriends.length())
+	if (index >= 0 && index < player->GetFriends().length())
 	{
 		
 	}

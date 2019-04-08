@@ -125,7 +125,7 @@ void Application::Save() {
 			fout << user->GetPassword() << endl;
 			fout << user->GetCredits() << endl;
 
-			for (int i = 0; i < user->GetLibrary().length(); i++) {
+			for (int i = 0; i < user->GetLibrary().size(); i++) {
 				LibraryItem* game = user->GetLibrary()[i];
 				fout << "ACCOUNT-USER-GAME" << endl;
 				fout << game->getGame()->GetID() << endl;
