@@ -60,7 +60,14 @@ bool FriendMenu::HandleChoice(char choice)
 			Player* player = static_cast<Player*>(app->GetCurrentUser());
 			bool friendExists = player->RemoveFriend(usernameSearch);
 
-			if (!friendExists) Question("No user found with that name. Press any key to continue");
+			if (!friendExists)
+			{
+				Question("No user found with that name. Press any key to continue");
+			}
+			else
+			{
+				Question("User removed, you can add them again at any time. Press any key to continue");
+			}
 		} break;
 	}
 
