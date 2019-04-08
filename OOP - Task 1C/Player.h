@@ -5,8 +5,8 @@
 #include "User.h"
 #include <vector>
 #include <algorithm>
-#include "Utils.h"
 #include "Game.h"
+#include "Utils.h"
 
 class Player : public User
 {
@@ -26,6 +26,7 @@ class Player : public User
 		LibraryItem* getLibaryItem(Game* game);
 		List<Player*> GetFriends() const;
 		void AddFriend(Player* newFriend);
+		bool RemoveFriend(string friendToDelete);
 		void SellGameToFriend(Player* receivingFriend, LibraryItem* game);
 		bool ownsGame(Game* game);
 

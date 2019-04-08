@@ -18,7 +18,6 @@ struct {
 	}
 } compareNames;
 
-
 Player::Player(const std::string& username, const std::string& password, const Date& created, const double& credits) : User(username, password, created), credits(credits)
 {
 
@@ -129,17 +128,47 @@ void Player::AddFriend(Player* newFriend) {
 
 void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 {
-	// Swaps the game owner
-	removeGameFromLibrary(game);
-	receivingFriend->AddToLibrary(game);
-
-	//Handles the credits transaction
 	double gameCost = (game->getGame()->GetCost()) / 2;
-	credits += gameCost;
-	receivingFriend->AddCredits(gameCost);
+
+	if(receivingFriend->GetCredits() > gameCost)
+	{
+		// Swaps the game owner
+		removeGameFromLibrary(game);
+		receivingFriend->AddToLibrary(game);
+
+		//Handles the credits transaction
+		credits += gameCost;
+		receivingFriend->RemoveCredits(gameCost);
+	}
 }
 
 void Player::removeGameFromLibrary(LibraryItem* gameToRemove)
 {
 	//library.deleteOne(gameToRemove);
+}
+
+bool Player::RemoveFriend(string friendToDelete)
+{
+
+	Utils::ToUpper(friendToDelete);
+
+	Player* player = static_cast<Player*>(this);
+
+	List<Player*> friends = player->GetFriends();
+
+	if (!friends.isEmpty())
+	{
+		for (int i = 0; i < friends.length(); i++)
+		{
+			string foundUsername = friends[i]->GetUsername();
+			Utils::ToUpper(foundUsername);
+
+			if (foundUsername == friendToDelete)
+			{
+				friends.deleteOne(friends[i]);
+				return true;
+			}
+		}
+	}
+	return false;
 }

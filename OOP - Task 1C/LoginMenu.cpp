@@ -24,7 +24,7 @@ bool LoginMenu::HandleChoice(char choice)
 		string username = app->GetCurrentAccount()->GetUsers()[choiceAsInt]->GetUsername();
 		string password = Question("Enter your password ");
 
-		app->LoginUser(username, password);
+		if(!app->LoginUser(username, password)) Question("Incorret password. Press any key to continue");
 		return true;
 
 	}
