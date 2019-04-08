@@ -56,7 +56,27 @@ bool FriendMenu::HandleChoice(char choice)
 		} break;
 		case 'R': //Remove friend
 		{
+			string usernameSearch = Question("Enter username");
 
+			Utils::ToUpper(usernameSearch);
+			bool flag = false;
+
+			Player* player = static_cast<Player*>(app->GetCurrentUser());
+
+			List<Player*> friends = player->GetFriends();
+
+			for (int i = 0; i < friends.length(); i++)
+			{
+				string foundUsername = friends[i]->GetUsername();
+				Utils::ToUpper(foundUsername);
+
+				if (foundUsername == usernameSearch)
+				{
+					friends.deleteOne(friends[i]);
+				}
+			}
+
+			if (!flag) Question("No user found with that name. Press any key to continue");
 		} break;
 	}
 
