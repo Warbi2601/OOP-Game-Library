@@ -1,20 +1,15 @@
 #include "Player.h"
 #include "Utils.h"
 
-// I tried to put this in Utils and declare them as static
-// but he compiler wasn't having any of it -Marcus
 struct {
 	bool operator()(LibraryItem* a, LibraryItem* b) const
 	{
-		// This was throwing an error, so I'll just return false...
-		// return a->getDate() < b->getDate();
-		return false;
+		return a->getDate() < b->getDate();
 	}
 } compareDates;
 struct {
 	bool operator()(LibraryItem* a, LibraryItem* b) const
 	{
-		// This works perfectly
 		return a->getGame()->GetName() < b->getGame()->GetName();
 	}
 } compareNames;
@@ -26,12 +21,6 @@ Player::Player(const std::string& username, const std::string& password, const D
 
 Player::~Player()
 {
-	
-
-	//for (int i = 0; i < 2; ++i)
-	//{
-	//	delete library[i];
-	//}
 }
 
 vector<LibraryItem*> Player::GetLibrary() const
@@ -145,13 +134,10 @@ void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 
 void Player::removeGameFromLibrary(LibraryItem* gameToRemove)
 {
-	//library.deleteOne(gameToRemove);
-
 	for (int i = 0; i < library.size(); i++)
 	{
 		if (library.at(i) == gameToRemove)
 		{
-			//TODO - Needs testing! - Josh
 			library.erase(library.begin() + i);
 		}
 	}
