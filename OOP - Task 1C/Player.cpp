@@ -146,13 +146,20 @@ void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 void Player::removeGameFromLibrary(LibraryItem* gameToRemove)
 {
 	//library.deleteOne(gameToRemove);
+
+	for (int i = 0; i < library.size(); i++)
+	{
+		if (library.at(i) == gameToRemove)
+		{
+			//TODO - Needs testing! - Josh
+			library.erase(library.begin() + i);
+		}
+	}
 }
 
 bool Player::RemoveFriend(string friendToDelete)
 {
-
 	Utils::ToUpper(friendToDelete);
-
 	Player* player = static_cast<Player*>(this);
 
 	if (!player->GetFriends().isEmpty())
@@ -164,7 +171,7 @@ bool Player::RemoveFriend(string friendToDelete)
 
 			if (foundUsername == friendToDelete)
 			{
-				player->GetFriends().deleteOne(player->GetFriends()[i]);
+				friends.deleteOne(player->GetFriends()[i]);
 				return true;
 			}
 		}
