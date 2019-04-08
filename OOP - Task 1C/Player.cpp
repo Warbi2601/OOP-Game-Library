@@ -18,13 +18,14 @@ struct {
 	}
 } compareNames;
 
-Player::Player(const std::string& username, const std::string& password, const Date& created, double& credits) : User(username, password, created)
+Player::Player(const std::string& username, const std::string& password, const Date& created, const double& credits) : User(username, password, created), credits(credits)
 {
 
 }
 
 Player::~Player()
 {
+	
 
 	//for (int i = 0; i < 2; ++i)
 	//{
@@ -143,5 +144,5 @@ void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 
 void Player::removeGameFromLibrary(LibraryItem* gameToRemove)
 {
-	library.deleteOne(gameToRemove);
+	//library.deleteOne(gameToRemove);
 }
