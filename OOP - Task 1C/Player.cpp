@@ -149,20 +149,26 @@ void Player::removeGameFromLibrary(LibraryItem* gameToRemove)
 
 bool Player::RemoveFriend(string friendToDelete)
 {
+
 	Utils::ToUpper(friendToDelete);
 
 	Player* player = static_cast<Player*>(this);
 
 	List<Player*> friends = player->GetFriends();
 
-	for (int i = 0; i < friends.length(); i++)
+	if (!friends.isEmpty())
 	{
-		string foundUsername = friends[i]->GetUsername();
-		Utils::ToUpper(foundUsername);
-
-		if (foundUsername == friendToDelete)
+		for (int i = 0; i < friends.length(); i++)
 		{
-			friends.deleteOne(friends[i]);
+			string foundUsername = friends[i]->GetUsername();
+			Utils::ToUpper(foundUsername);
+
+			if (foundUsername == friendToDelete)
+			{
+				friends.deleteOne(friends[i]);
+				return true;
+			}
 		}
 	}
+	return false;
 }
