@@ -46,27 +46,27 @@ int Utils::getRandomNumber(int lower, int upper)
 	return rand() % upper + lower;
 }
 
-//bool Utils::isUniqueUsername(List<Account*> accounts, std::string a)
-//{
-//	Utils::ToUpper(a);
-//	bool isFound = true;
-//
-//	for (int i = 0; i < accounts.length(); i++)
-//	{
-//		List<User*> users = accounts[i]->GetUsers();
-//
-//		for (int x = 0; x < users.length(); x++)
-//		{
-//			string userUsername = users[x]->GetUsername();
-//			Utils::ToUpper(userUsername);
-//
-//			if (userUsername == a)
-//			{
-//				isFound = false;
-//				return false;
-//			}
-//		}
-//	}
-//
-//	return true;
-//}
+bool Utils::isUniqueUsername(List<Account*> accounts, std::string a)
+{
+	Utils::ToUpper(a);
+	bool isFound = true;
+
+	for (int i = 0; i < accounts.length(); i++)
+	{
+		List<User*> users = accounts[i]->GetUsers();
+
+		for (int x = 0; x < users.length(); x++)
+		{
+			string userUsername = users[x]->GetUsername();
+			Utils::ToUpper(userUsername);
+
+			if (userUsername == a)
+			{
+				isFound = false;
+				return false;
+			}
+		}
+	}
+
+	return true;
+}
