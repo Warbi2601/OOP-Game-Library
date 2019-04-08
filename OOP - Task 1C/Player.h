@@ -26,7 +26,7 @@ class Player : public User
 		List<Player*> GetFriends() const;
 		void AddFriend(Player* newFriend);
 		bool RemoveFriend(string friendToDelete);
-		void SellGameToFriend(Player* receivingFriend, LibraryItem* game);
+		bool SellGameToFriend(Player* receivingFriend, LibraryItem* game);
 		bool ownsGame(Game* game);
 
 	private:

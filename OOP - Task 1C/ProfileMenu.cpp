@@ -66,11 +66,11 @@ bool ProfileMenu::HandleChoice(char choice)
 		{
 			FriendMenu("Friends", app);
 		} break;
-
-		case 'S': {
+		case 'S': 
+		{
 			std::string type = Question("By date or name?");
 			player->SortLibrary(type);
-		}
+		} break;
 
 		//edit user settings (All must ensure the user is an admin first...)s
 		case 'A': //Add user

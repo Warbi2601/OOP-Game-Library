@@ -127,7 +127,7 @@ void Player::AddFriend(Player* newFriend) {
 	friends.addAtEnd(newFriend);
 }
 
-void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
+bool Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 {
 	double gameCost = (game->getGame()->GetCost()) / 2;
 
@@ -140,7 +140,9 @@ void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 		//Handles the credits transaction
 		credits += gameCost;
 		receivingFriend->RemoveCredits(gameCost);
+		return true;
 	}
+	return false;
 }
 
 void Player::removeGameFromLibrary(LibraryItem* gameToRemove)

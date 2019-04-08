@@ -29,7 +29,8 @@ bool GiftFriendMenu::HandleChoice(char choice)
 		if (index >= 0 && index < player->GetLibrary().size())
 		{
 			LibraryItem* libItem = player->GetLibrary()[index];
-			player->SellGameToFriend(sendingTo, libItem);
+			if (player->SellGameToFriend(sendingTo, libItem)) Question("Game successfully transfered!");
+			else Question(sendingTo->GetUsername() + " doesnt have enough credits to buy this game!");
 		}
 	}
 	return false;
