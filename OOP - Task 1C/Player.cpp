@@ -19,7 +19,7 @@ struct {
 	}
 } compareNames;
 
-Player::Player(const std::string& username, const std::string& password, const Date& created, const double& credits, List<Player*> friends) : User(username, password, created), credits(credits), friends(friends)
+Player::Player(const std::string& username, const std::string& password, const Date& created, const double& credits) : User(username, password, created), credits(credits)
 {
 
 }

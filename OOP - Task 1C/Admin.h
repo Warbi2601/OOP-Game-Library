@@ -7,6 +7,6 @@
 class Admin : public Player
 {
 	public:
-		Admin(const std::string & username, const std::string & password, const Date & created, double & credits, List<Player*> friends);
+		Admin(const string& , const string& , const Date&, double);
 		~Admin();
 };
