@@ -12,6 +12,10 @@ void FriendMenu::OutputOptions()
 	Option('R', "Remove friend");
 
 	Line("\nFriends list:");
+	for (int i = 0; i < player->GetFriends().length(); i++)
+	{
+		Option(i, player->GetFriends()[i]->GetUsername());
+	}
 	
 }
 
@@ -23,20 +27,20 @@ bool FriendMenu::HandleChoice(char choice)
 	{
 		case 'A': //Add friend
 		{
-
+			Question("Enter a username");
+			//player->AddFriend()
 		} break;
 		case 'R': //Remove friend
 		{
-
+			Question("Enter a username");
 		} break;
-
 	}
 
 	int index = choice - '1';
 
-	if (index >= 0 && index < player->GetLibrary().length())
+	if (index >= 0 && index < player->GetFriends.length())
 	{
-
+		
 	}
 	return false;
 }
