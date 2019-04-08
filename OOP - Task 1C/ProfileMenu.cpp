@@ -64,7 +64,7 @@ bool ProfileMenu::HandleChoice(char choice)
 		} break;
 		case 'F': //Friends..
 		{
-
+			FriendMenu("Friends", app);
 		} break;
 
 		case 'S': {

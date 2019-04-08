@@ -49,8 +49,8 @@ bool MainMenu::HandleChoice(char choice)
 			}
 			else
 			{
-				string email = Question("Enter your account email: ");
-				string password = Question("Enter your account password: ");
+				string email = Question("Enter your account email");
+				string password = Question("Enter your account password");
 				if (!app->LoginAccount(email, password)) Line("Login failed, try again...");
 
 			}
