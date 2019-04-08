@@ -43,8 +43,12 @@ bool FriendMenu::HandleChoice(char choice)
 					if (foundUsername == usernameSearch)
 					{
 						Player* temp = static_cast<Player*>(app->GetAccounts()[acc]->GetUsers()[usr]);
-						player->AddFriend(temp);
-						flag = true;
+						if (!player->GetFriends().contains(temp))
+						{
+							player->AddFriend(temp);
+							flag = true;
+						}
+						else Question("You are already friends with that person. Press any key to continue");
 					}
 				}
 			}
