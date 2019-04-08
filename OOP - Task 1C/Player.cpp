@@ -1,5 +1,23 @@
 #include "Player.h"
 
+// I tried to put this in Utils and declare them as static
+// but he compiler wasn't having any of it -Marcus
+struct {
+	bool operator()(LibraryItem* a, LibraryItem* b) const
+	{
+		// This was throwing an error, so I'll just return false...
+		// return a->getDate() < b->getDate();
+		return false;
+	}
+} compareDates;
+struct {
+	bool operator()(LibraryItem* a, LibraryItem* b) const
+	{
+		// This works perfectly
+		return a->getGame()->GetName() < b->getGame()->GetName();
+	}
+} compareNames;
+
 Player::Player(const std::string& username, const std::string& password, const Date& created) : User(username, password, created)
 {
 }
@@ -22,6 +40,18 @@ Player& Player::AddToLibrary(LibraryItem * item)
 {
 	library.push_back(item);
 	return *this;
+}
+
+void Player::SortLibrary(std::string type)
+{
+	if (library.size() > 1) {
+		if (type == "date") {
+			std::sort(library.begin(), library.end(), compareDates);
+		}
+		else if (type == "name") {
+			std::sort(library.begin(), library.end(), compareNames);
+		}
+	}
 }
 
 bool Player::PurchaseGame(Game* game) 

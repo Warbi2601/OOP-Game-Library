@@ -24,6 +24,9 @@ void ProfileMenu::OutputOptions()
 		string txt = itm->getGame()->GetName() + " (" + std::to_string(itm->getTimePlayed()) + ")";
 		Option(i + 1,txt);
 	}
+	Option('S', "Sort games");
+	Line("");
+
 	string boobies = typeid(player).name();
 	// if the user is an admin display more options..
 	if (typeid(player).name() == "Admin")
@@ -60,6 +63,10 @@ bool ProfileMenu::HandleChoice(char choice)
 			player->AddCredits(100);
 		} break;
 
+		case 'S': {
+			std::string type = Question("By date or name?");
+			player->SortLibrary(type);
+		}
 
 		//edit user settings (All must ensure the user is an admin first...)s
 		case 'A': //Add user

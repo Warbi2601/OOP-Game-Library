@@ -4,6 +4,8 @@
 #include "LibraryItem.h"
 #include "User.h"
 #include <vector>
+#include <algorithm>
+#include "Utils.h"
 #include "Game.h"
 
 class Player : public User
@@ -14,6 +16,7 @@ class Player : public User
 		// Library
 		vector<LibraryItem*> GetLibrary() const;
 		Player& AddToLibrary(LibraryItem* item);
+		void SortLibrary(std::string type);
 		bool PurchaseGame(Game* game);
 		// Credits
 		double GetCredits() const;
