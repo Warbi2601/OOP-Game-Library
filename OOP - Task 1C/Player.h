@@ -11,7 +11,8 @@
 class Player : public User
 {
 	public:
-		Player(const std::string&, const std::string&, const Date&, double&);
+		//Player(const std::string&, const std::string&, const Date&, double&);
+		Player(const std::string& username, const std::string& password, const Date& created, const double& credits);
 		~Player();
 		// Library
 		vector<LibraryItem*> GetLibrary() const;

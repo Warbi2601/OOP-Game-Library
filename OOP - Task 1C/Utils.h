@@ -21,5 +21,5 @@ class Utils
 	static void ToUpper(std::string&);
 	static void ToUpperRecursive(std::string&, int);
 	static int getRandomNumber(int lower, int upper);
-	static bool isUniqueUsername(List<Account*> accounts, std::string a);
+	//static bool isUniqueUsername(List<Account*> accounts, std::string a);
 };

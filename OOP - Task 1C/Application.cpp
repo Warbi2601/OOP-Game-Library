@@ -106,7 +106,35 @@ void Application::LogoutUser()
 		fout << to_string(i) << endl;
 		fout << 
 	}
+
+	for (int i = 0; i < GetAccounts().length(); i++) {
+		Account* account = GetAccounts()[i];
+		fout << "ACCOUNT" << endl;
+		fout << account->GetCreated().ToString(account->GetCreated()) << endl;
+		fout << account->GetEmail() << endl;
+		fout << account->GetPassword() << endl;
+
+		for (int i = 0; i < account->GetUsers().length(); i++) {
+			Player* user = static_cast<Player*>(account->GetUsers()[i]);
+			fout << "ACCOUNT-USER" << endl;
+			fout << user->GetCreated().ToString(user->GetCreated()) << endl;
+			fout << user->GetUsername() << endl;
+			fout << user->GetPassword() << endl;
+			fout << user->GetCredits() << endl;
+
+			for (int i = 0; i < user->GetLibrary().size(); i++) {
+				LibraryItem* game = user->GetLibrary()[i];
+				fout << "ACCOUNT-USER-GAME" << endl;
+				fout << game->getGame()->GetID() << endl;
+				fout << game->getDate().ToString(game->getDate()) << endl;
+				fout << game->getTimePlayed() << endl;
+			}
+		}
+	}
+}
+
 }*/
+
 
 void Application::Load() {
 	string line;
