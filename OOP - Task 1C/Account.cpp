@@ -32,3 +32,8 @@ std::string Account::GetPassword() const
 {
 	return password;
 }
+
+Date Account::GetCreated() const {
+
+	return created;
+}

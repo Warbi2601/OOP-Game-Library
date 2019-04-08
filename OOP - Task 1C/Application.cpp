@@ -98,13 +98,17 @@ void Application::LogoutUser()
 	currentUser = nullptr;
 }
 
-/*void Application::Save() {
+void Application::Save() {
 	ofstream fout;
-	fout.open("copy.txt");
+	fout.open("data.txt");
 	for (int i = 0; i < GetStore().GetGames().length(); i++) {
+		Game* game = GetStore().GetGames()[i];
 		fout << "GAME" << endl;
-		fout << to_string(i) << endl;
-		fout << 
+		fout << game->GetID() << endl;
+		fout << game->GetName() << endl;
+		fout << game->GetDescription() << endl;
+		fout << game->GetCost() << endl;
+		fout << game->GetRating() << endl;
 	}
 
 	for (int i = 0; i < GetAccounts().length(); i++) {
@@ -133,7 +137,7 @@ void Application::LogoutUser()
 	}
 }
 
-}*/
+
 
 
 void Application::Load() {
