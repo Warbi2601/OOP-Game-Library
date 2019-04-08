@@ -52,11 +52,14 @@ bool FriendMenu::HandleChoice(char choice)
 		} break;
 	}
 
-	int index = choice - '1';
-
-	if (index >= 0 && index < player->GetFriends().length())
+	if (!player->GetFriends().isEmpty())
 	{
-		
+		int index = choice - '1';
+
+		if (index >= 0 && index < player->GetFriends().length())
+		{
+
+		}
 	}
 	return false;
 }
