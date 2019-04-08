@@ -33,6 +33,7 @@ bool FriendMenu::HandleChoice(char choice)
 			string usernameSearch = Question("Enter username");
 
 			Utils::ToUpper(usernameSearch);
+			bool flag = false;
 			for (int acc = 0; acc < app->GetAccounts().length(); acc++)
 			{
 				for (int usr = 0; usr < app->GetAccounts()[acc]->GetUsers().length(); usr++)
@@ -43,9 +44,11 @@ bool FriendMenu::HandleChoice(char choice)
 					{
 						Player* temp = static_cast<Player*>(app->GetAccounts()[acc]->GetUsers()[usr]);
 						player->AddFriend(temp);
+						flag = true;
 					}
 				}
 			}
+			if (!flag) Question("No user found with that name. Press any key to continue");
 		} break;
 		case 'R': //Remove friend
 		{
