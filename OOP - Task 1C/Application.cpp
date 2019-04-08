@@ -100,7 +100,7 @@ void Application::LogoutUser()
 
 void Application::Save() {
 	ofstream fout;
-	fout.open("data.txt");
+	fout.open("copy.txt");
 	for (int i = 0; i < GetStore().GetGames().length(); i++) {
 		Game* game = GetStore().GetGames()[i];
 		fout << "GAME" << endl;
@@ -132,6 +132,15 @@ void Application::Save() {
 				fout << game->getGame()->GetID() << endl;
 				fout << game->getDate().ToString(game->getDate()) << endl;
 				fout << game->getTimePlayed() << endl;
+			}
+		}
+		for (int i = 0; i < account->GetUsers().length(); i++) {
+			Player* user = static_cast<Player*>(account->GetUsers()[i]);
+			for (int i = 0; i < user->GetFriends().length(); i++) {
+				Player* friends = user->GetFriends()[i];
+				fout << "ACCOUNT-USER-FRIEND" << endl;
+				fout << user->GetUsername << endl;
+				fout << friends->GetUsername << endl;
 			}
 		}
 	}
@@ -240,6 +249,11 @@ void Application::Load() {
 				Player* player = static_cast<Player*>(u1);
 				player->AddToLibrary(new LibraryItem(date, games[game], hours));
 				
+			}
+
+			if (line == "ACCOUNT-USER-FRIEND") {
+				getline(fin, line);
+
 			}
 			
 		}
