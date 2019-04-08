@@ -3,7 +3,9 @@
 #include <string>
 #include "LibraryItem.h"
 #include "User.h"
-#include "ListT.h"
+#include <vector>
+#include <algorithm>
+#include "Utils.h"
 #include "Game.h"
 
 class Player : public User
@@ -12,8 +14,9 @@ class Player : public User
 		Player(const std::string&, const std::string&, const Date&, double&);
 		~Player();
 		// Library
-		List<LibraryItem*> GetLibrary() const;
+		vector<LibraryItem*> GetLibrary() const;
 		Player& AddToLibrary(LibraryItem* item);
+		void SortLibrary(std::string type);
 		bool PurchaseGame(Game* game);
 		// Credits
 		double GetCredits() const;
@@ -26,7 +29,7 @@ class Player : public User
 		bool ownsGame(Game* game);
 
 	private:
-		List<LibraryItem*> library;
+		vector<LibraryItem*> library;
 		List<Player*> friends;
 		double credits;
 		void removeGameFromLibrary(LibraryItem*);

@@ -20,12 +20,16 @@ void ProfileMenu::OutputOptions()
 
 	Line("Owned games:");
 	//for loop which displays all games...
-	for(int i = 0; i < player->GetLibrary().length(); i++)
+	for(int i = 0; i < player->GetLibrary().size(); i++)
 	{
 		LibraryItem* itm = player->GetLibrary()[i];
 		string txt = itm->getGame()->GetName() + " (" + std::to_string(itm->getTimePlayed()) + ")";
 		Option(i + 1,txt);
-	}	// if the user is an admin display more options..
+	}
+	Option('S', "Sort games");
+	Line("");
+
+	// if the user is an admin display more options..
 	if (app->IsAdmin())
 	{
 		Line(""); // newLine
@@ -63,6 +67,10 @@ bool ProfileMenu::HandleChoice(char choice)
 
 		} break;
 
+		case 'S': {
+			std::string type = Question("By date or name?");
+			player->SortLibrary(type);
+		}
 
 		//edit user settings (All must ensure the user is an admin first...)s
 		case 'A': //Add user
@@ -101,7 +109,7 @@ bool ProfileMenu::HandleChoice(char choice)
 	//Game add time random choice
 	int index = choice - '1';
 
-	if (index >= 0 && index < player->GetLibrary().length())
+	if (index >= 0 && index < player->GetLibrary().size())
 	{
 		LibraryItem* selected = player->GetLibrary()[index];
 		selected->IncrementTimePlayed(Utils::getRandomNumber(10,60));
