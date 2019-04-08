@@ -24,7 +24,7 @@ class Player : public User
 		void RemoveCredits(double amount);
 		LibraryItem* getLibaryItem(Game* game);
 		List<Player*> GetFriends() const;
-		void AddFriend(Player* newFriend);
+		bool AddFriend(List<Account*> listOfAccounts, string friendToAdd);
 		bool RemoveFriend(string friendToDelete);
 		void SellGameToFriend(Player* receivingFriend, LibraryItem* game);
 		bool ownsGame(Game* game);

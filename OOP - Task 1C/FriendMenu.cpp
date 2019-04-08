@@ -30,43 +30,31 @@ bool FriendMenu::HandleChoice(char choice)
 	{
 		case 'A': //Add friend
 		{
-			string usernameSearch = Question("Enter username");
+			//string usernameSearch = Question("Enter username");
+			//bool friendExists = player->AddFriend(app->GetAccounts(), usernameSearch);
+			//
+			//if (friendExists)
+			//{
+			//	Question("No user found with that name. Press any key to continue");
+			//}
+			//else
+			//{
+			//	Question("User added to your list of friends. Press any key to continue");
 
-			Utils::ToUpper(usernameSearch);
-			bool flag = false;
-			for (int acc = 0; acc < app->GetAccounts().length(); acc++)
-			{
-				for (int usr = 0; usr < app->GetAccounts()[acc]->GetUsers().length(); usr++)
-				{
-					string foundUsername = app->GetAccounts()[acc]->GetUsers()[usr]->GetUsername();
-					Utils::ToUpper(foundUsername);
-					if (foundUsername == usernameSearch)
-					{
-						Player* temp = static_cast<Player*>(app->GetAccounts()[acc]->GetUsers()[usr]);
-						if (!player->GetFriends().contains(temp))
-						{
-							player->AddFriend(temp);
-						}
-						else Question("You are already friends with that person. Press any key to continue");
-						flag = true;
-					}
-				}
-			}
-			if (!flag) Question("No user found with that name. Press any key to continue");
+			//}
 		} break;
 		case 'R': //Remove friend
 		{
 			string usernameSearch = Question("Enter username");
-			Player* player = static_cast<Player*>(app->GetCurrentUser());
 			bool friendExists = player->RemoveFriend(usernameSearch);
 
-			if (!friendExists)
+			if (friendExists)
 			{
-				Question("No user found with that name. Press any key to continue");
+				Question("User removed, you can add them again at any time. Press any key to continue");
 			}
 			else
 			{
-				Question("User removed, you can add them again at any time. Press any key to continue");
+				Question("No user found with that name or you are already friends with that person. Press any key to continue");
 			}
 		} break;
 	}

@@ -123,8 +123,51 @@ List<Player*> Player::GetFriends() const
 	return friends;
 }
 
-void Player::AddFriend(Player* newFriend) {
-	friends.addAtEnd(newFriend);
+bool Player::AddFriend(List<Account*> listOfAccounts, string friendToAdd)
+{
+	Player* player = static_cast<Player*>(this);
+
+	Utils::ToUpper(friendToAdd);
+	for (int acc = 0; acc < listOfAccounts.length(); acc++)
+	{
+		for (int usr = 0; usr < listOfAccounts[acc]->GetUsers().length(); usr++)
+		{
+			string foundUsername = listOfAccounts[acc]->GetUsers()[usr]->GetUsername();
+			Utils::ToUpper(foundUsername);
+			if (foundUsername == friendToAdd)
+			{
+				Player* temp = static_cast<Player*>(listOfAccounts[acc]->GetUsers()[usr]);
+				if (!player->GetFriends().contains(temp))
+				{
+					friends.addAtEnd(temp);
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool Player::RemoveFriend(string friendToDelete)
+{
+	Utils::ToUpper(friendToDelete);
+	Player* player = static_cast<Player*>(this);
+
+	if (!player->GetFriends().isEmpty())
+	{
+		for (int i = 0; i < player->GetFriends().length(); i++)
+		{
+			string foundUsername = player->GetFriends()[i]->GetUsername();
+			Utils::ToUpper(foundUsername);
+
+			if (foundUsername == friendToDelete)
+			{
+				player->GetFriends().deleteOne(player->GetFriends()[i]);
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
@@ -146,28 +189,4 @@ void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 void Player::removeGameFromLibrary(LibraryItem* gameToRemove)
 {
 	//library.deleteOne(gameToRemove);
-}
-
-bool Player::RemoveFriend(string friendToDelete)
-{
-
-	Utils::ToUpper(friendToDelete);
-
-	Player* player = static_cast<Player*>(this);
-
-	if (!player->GetFriends().isEmpty())
-	{
-		for (int i = 0; i < player->GetFriends().length(); i++)
-		{
-			string foundUsername = player->GetFriends()[i]->GetUsername();
-			Utils::ToUpper(foundUsername);
-
-			if (foundUsername == friendToDelete)
-			{
-				player->GetFriends().deleteOne(player->GetFriends()[i]);
-				return true;
-			}
-		}
-	}
-	return false;
 }
