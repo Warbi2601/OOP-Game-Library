@@ -6,13 +6,14 @@
 #include "LibraryItem.h"
 #include "LoginMenu.h"
 #include "User.h"
-#include "GiftFriendMenu.h"
 
 
-class FriendMenu : public Menu
+class GiftFriendMenu : public Menu
 {
 	public:
-		FriendMenu(const std::string& title, Application * app);
+		GiftFriendMenu(const std::string& title, Application * app, Player* sendingTo);
 		void OutputOptions() final;
 		bool HandleChoice(char choice) final;
+	private:
+		Player* sendingTo;
 };

@@ -41,13 +41,6 @@ Date::Date(const string& str)
 	this->year = yearNum;
 }
 
-bool Date::operator<(const Date & date)
-{
-	// I'm not the best way to implement this...
-	// But it's needed for the library sorting -Marcus
-	return false;
-}
-
 #pragma endregion
 
 #pragma region Getters
@@ -178,10 +171,16 @@ ostream& operator<<(ostream& os, Date* datePointer)
 	return os;
 }
 
-//istream& operator>>(istream& is, Date& output)
-//{
-//	getline(is, output, '/');
-//	return is;
-//}
+bool operator<(const Date& lhs, const Date& rhs)
+{
+	if (lhs.getYear() < rhs.getYear())       return true;
+	if (lhs.getYear() > rhs.getYear())       return false;
+	if (lhs.getMonth() < rhs.getMonth())     return true;
+	if (lhs.getMonth() > rhs.getMonth())     return false;
+	if (lhs.getDay() < rhs.getDay())       return true;
+	if (lhs.getDay() > rhs.getDay())       return false;
+
+	return false;
+}
 
 #pragma endregion

@@ -48,12 +48,9 @@ bool GameMenu::HandleChoice(char choice)
 					Player* player = dynamic_cast<Player*>(app->GetCurrentUser());
 					bool success = player->PurchaseGame(game);
 					
-					if (success) {
-						Line("Congratulations! You now own " + game->GetName());
-					}
-					else {
-						Line("You don't have enough credits!");
-					}
+					if (success) Question("Congratulations! You now own " + game->GetName());
+					else Question("You don't have enough credits!");
+
 				}
 			}
 		} break;

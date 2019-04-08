@@ -19,8 +19,8 @@ public:
 	Date(const Date&);
 	Date(const string&);
 
-	// For library sorting
-	bool operator<(const Date& date);
+
+
 	//Destructor not needed because no heap memory
 	
 	//Getters
@@ -56,3 +56,6 @@ private:
 	
 //Overloaded Operators
 ostream& operator<<(ostream& os, Date* datePointer);
+
+// For library sorting
+bool operator<(const Date& lhs, const Date& rhs);

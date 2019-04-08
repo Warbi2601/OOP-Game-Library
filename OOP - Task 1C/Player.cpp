@@ -1,20 +1,15 @@
 #include "Player.h"
 #include "Utils.h"
 
-// I tried to put this in Utils and declare them as static
-// but he compiler wasn't having any of it -Marcus
 struct {
 	bool operator()(LibraryItem* a, LibraryItem* b) const
 	{
-		// This was throwing an error, so I'll just return false...
-		// return a->getDate() < b->getDate();
-		return false;
+		return a->getDate() < b->getDate();
 	}
 } compareDates;
 struct {
 	bool operator()(LibraryItem* a, LibraryItem* b) const
 	{
-		// This works perfectly
 		return a->getGame()->GetName() < b->getGame()->GetName();
 	}
 } compareNames;
@@ -26,12 +21,6 @@ Player::Player(const std::string& username, const std::string& password, const D
 
 Player::~Player()
 {
-	
-
-	//for (int i = 0; i < 2; ++i)
-	//{
-	//	delete library[i];
-	//}
 }
 
 vector<LibraryItem*> Player::GetLibrary() const
@@ -127,7 +116,7 @@ void Player::AddFriend(Player* newFriend) {
 	friends.addAtEnd(newFriend);
 }
 
-void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
+bool Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 {
 	double gameCost = (game->getGame()->GetCost()) / 2;
 
@@ -140,19 +129,25 @@ void Player::SellGameToFriend(Player* receivingFriend, LibraryItem* game)
 		//Handles the credits transaction
 		credits += gameCost;
 		receivingFriend->RemoveCredits(gameCost);
+		return true;
 	}
+	return false;
 }
 
 void Player::removeGameFromLibrary(LibraryItem* gameToRemove)
 {
-	//library.deleteOne(gameToRemove);
+	for (int i = 0; i < library.size(); i++)
+	{
+		if (library.at(i) == gameToRemove)
+		{
+			library.erase(library.begin() + i);
+		}
+	}
 }
 
 bool Player::RemoveFriend(string friendToDelete)
 {
-
 	Utils::ToUpper(friendToDelete);
-
 	Player* player = static_cast<Player*>(this);
 
 	if (!player->GetFriends().isEmpty())
@@ -164,7 +159,7 @@ bool Player::RemoveFriend(string friendToDelete)
 
 			if (foundUsername == friendToDelete)
 			{
-				player->GetFriends().deleteOne(player->GetFriends()[i]);
+				friends.deleteOne(player->GetFriends()[i]);
 				return true;
 			}
 		}
