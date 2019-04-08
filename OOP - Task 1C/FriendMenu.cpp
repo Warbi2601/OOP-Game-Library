@@ -31,12 +31,16 @@ bool FriendMenu::HandleChoice(char choice)
 		case 'A': //Add friend
 		{
 			string usernameSearch = Question("Enter username");
+
+			Utils::ToUpper(usernameSearch);
 			bool flag = false;
 			for (int acc = 0; acc < app->GetAccounts().length(); acc++)
 			{
 				for (int usr = 0; usr < app->GetAccounts()[acc]->GetUsers().length(); usr++)
 				{
-					if (app->GetAccounts()[acc]->GetUsers()[usr]->GetUsername() == usernameSearch)
+					string foundUsername = app->GetAccounts()[acc]->GetUsers()[usr]->GetUsername();
+					Utils::ToUpper(foundUsername);
+					if (foundUsername == usernameSearch)
 					{
 						Player* temp = static_cast<Player*>(app->GetAccounts()[acc]->GetUsers()[usr]);
 						player->AddFriend(temp);
