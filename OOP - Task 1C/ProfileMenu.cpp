@@ -79,8 +79,11 @@ bool ProfileMenu::HandleChoice(char choice)
 			{
 				string username = Question("Enter a username");
 				string password = Question("Enter a password");
-				User* newUser = new User(username, password, Date::CurrentDate());
-				app->GetCurrentAccount()->AddUser(newUser);
+				if (Utils::isUniqueUsername(app->GetAccounts(), username))
+				{
+					User* newUser = new User(username, password, Date::CurrentDate());
+					app->GetCurrentAccount()->AddUser(newUser);
+				}
 			}
 		} break;
 		case 'R': //Remove user
