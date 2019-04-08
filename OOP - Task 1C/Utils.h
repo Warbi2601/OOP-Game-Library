@@ -17,5 +17,5 @@ class Utils
 	static void ToUpperRecursive(std::string&, int);
 	static int getRandomNumber(int lower, int upper);
 	static bool isUniqueUsername(List<Account*> accounts, std::string a);
-	Player* Utils::getPlayerByUsername(List<Account*> accounts, std::string username);
+	static Player* Utils::getPlayerByUsername(List<Account*> accounts, std::string username);
 };
