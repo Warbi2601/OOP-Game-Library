@@ -60,7 +60,7 @@ bool ProfileMenu::HandleChoice(char choice)
 		} break;
 		case 'F': //Friends..
 		{
-
+			FriendMenu("Friends", app);
 		} break;
 
 
@@ -100,7 +100,7 @@ bool ProfileMenu::HandleChoice(char choice)
 	if (index >= 0 && index < player->GetLibrary().length())
 	{
 		LibraryItem* selected = player->GetLibrary()[index];
-		selected->IncrimentTimePlayed(Utils::getRandomNumber(10,60));
+		selected->IncrementTimePlayed(Utils::getRandomNumber(10,60));
 	}
 	return false;
 }
