@@ -46,9 +46,9 @@ bool FriendMenu::HandleChoice(char choice)
 						if (!player->GetFriends().contains(temp))
 						{
 							player->AddFriend(temp);
-							flag = true;
 						}
 						else Question("You are already friends with that person. Press any key to continue");
+						flag = true;
 					}
 				}
 			}
@@ -56,7 +56,7 @@ bool FriendMenu::HandleChoice(char choice)
 		} break;
 		case 'R': //Remove friend
 		{
-			Question("Enter username");
+
 		} break;
 	}
 
@@ -66,7 +66,9 @@ bool FriendMenu::HandleChoice(char choice)
 
 		if (index >= 0 && index < player->GetFriends().length())
 		{
+			//Open a menu which allows you to choose a game to sell to selected player... (aka should pass the player*)
 
+			//player->GetFriends()[index]
 		}
 	}
 	return false;
