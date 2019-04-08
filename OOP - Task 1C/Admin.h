@@ -2,6 +2,7 @@
 
 #include <string>
 #include "Player.h"
+#include "Admin.h"
 
 class Admin : public Player
 {

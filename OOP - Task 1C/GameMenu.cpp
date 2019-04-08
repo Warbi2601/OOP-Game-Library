@@ -23,10 +23,11 @@ void GameMenu::OutputOptions()
 			LibraryItem* item = player->getLibaryItem(game);
 			Line("You own this game");
 			Line("Date purchased: " + item->getDate().ToString(item->getDate()));
+			Line("Play time: " + to_string(item->getTimePlayed()));
 		}
 		else
 		{
-			Line("Cost: " + game->GetCost());
+			Line("Cost: " + to_string(game->GetCost()));
 			Option('P', "Purchase game");
 		}
 	}

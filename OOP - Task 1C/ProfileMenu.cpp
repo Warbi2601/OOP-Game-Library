@@ -15,25 +15,28 @@ void ProfileMenu::OutputOptions()
 	Option('P', "Purchase 100 credit");
 
 	Line("");  // newLine
+	Option('F', "Friends");
+	Line("");  // newLine
 
 	Line("Owned games:");
 	//for loop which displays all games...
-	for(int i = 0; i < player->GetLibrary().length(); i++)
+	for(int i = 0; i < player->GetLibrary().size(); i++)
 	{
 		LibraryItem* itm = player->GetLibrary()[i];
 		string txt = itm->getGame()->GetName() + " (" + std::to_string(itm->getTimePlayed()) + ")";
 		Option(i + 1,txt);
 	}
-	string boobies = typeid(player).name();
+	Option('S', "Sort games");
+	Line("");
+
 	// if the user is an admin display more options..
-	if (typeid(player).name() == "Admin")
+	if (app->IsAdmin())
 	{
 		Line(""); // newLine
 
 		Line("Admin:");
 		Option('A', "Add new user");
 		Option('R', "Remove user");
-		Option('G', "Guest per-game access");
 	}
 
 
@@ -59,12 +62,20 @@ bool ProfileMenu::HandleChoice(char choice)
 		{
 			player->AddCredits(100);
 		} break;
+		case 'F': //Friends..
+		{
+			FriendMenu("Friends", app);
+		} break;
 
+		case 'S': {
+			std::string type = Question("By date or name?");
+			player->SortLibrary(type);
+		}
 
 		//edit user settings (All must ensure the user is an admin first...)s
 		case 'A': //Add user
 		{
-			if (Utils::isType(app->GetCurrentUser(), "Admin"))
+			if (app->IsAdmin())
 			{
 				string username = Question("Enter a username");
 				string password = Question("Enter a password");
@@ -74,16 +85,22 @@ bool ProfileMenu::HandleChoice(char choice)
 		} break;
 		case 'R': //Remove user
 		{
-			if (Utils::isType(app->GetCurrentUser(), "Admin"))
+			if (app->IsAdmin())
 			{
-
-			}
-		} break;
-		case 'G': //Guest per access game
-		{
-			if (Utils::isType(app->GetCurrentUser(), "Admin"))
-			{
-
+				string username = Question("Enter a username");
+				User* usr = nullptr;
+				List<User*> users = app->GetCurrentAccount()->GetUsers();
+				for(int i = 0; i < users.length(); i++)
+				{
+					Utils::ToUpper(username);
+					string userUsername = users[i]->GetUsername();
+					Utils::ToUpper(userUsername);
+					if (userUsername == username)
+					{
+						User* usr = users[i];
+						users.deleteOne(usr);
+					}
+				}
 			}
 		} break;
 
@@ -92,12 +109,10 @@ bool ProfileMenu::HandleChoice(char choice)
 	//Game add time random choice
 	int index = choice - '1';
 
-	if (index >= 0 && index < player->GetLibrary().length())
+	if (index >= 0 && index < player->GetLibrary().size())
 	{
 		LibraryItem* selected = player->GetLibrary()[index];
-		selected->IncrementTimePlayed(Utils::getRandomNumber(10,100));
+		selected->IncrementTimePlayed(Utils::getRandomNumber(10,60));
 	}
-
-
 	return false;
 }

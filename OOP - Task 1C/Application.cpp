@@ -256,3 +256,13 @@ bool Application::IsPlayer() {
 	}
 	return false;
 }
+
+bool Application::IsAdmin() {
+	if (IsUserLoggedIn())
+	{
+		if (Admin *p = dynamic_cast<Admin *>(GetCurrentUser())) {
+			return true;
+		}
+	}
+	return false;
+}

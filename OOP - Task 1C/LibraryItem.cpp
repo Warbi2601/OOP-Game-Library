@@ -28,3 +28,8 @@ void LibraryItem::IncrementTimePlayed(int time)
 {
 	timePlayed += time;
 }
+
+void removeLibraryItem(LibraryItem* game)
+{
+
+}

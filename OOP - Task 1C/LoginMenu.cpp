@@ -22,7 +22,7 @@ bool LoginMenu::HandleChoice(char choice)
 	if (choiceAsInt <= app->GetCurrentAccount()->GetUsers().length() || choiceAsInt >= 0)
 	{
 		string username = app->GetCurrentAccount()->GetUsers()[choiceAsInt]->GetUsername();
-		string password = Question("Enter your password:");
+		string password = Question("Enter your password ");
 
 		app->LoginUser(username, password);
 		return true;

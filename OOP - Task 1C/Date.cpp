@@ -41,6 +41,13 @@ Date::Date(const string& str)
 	this->year = yearNum;
 }
 
+bool Date::operator<(const Date & date)
+{
+	// I'm not the best way to implement this...
+	// But it's needed for the library sorting -Marcus
+	return false;
+}
+
 #pragma endregion
 
 #pragma region Getters
