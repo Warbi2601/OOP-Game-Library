@@ -11,12 +11,15 @@ void FriendMenu::OutputOptions()
 	Option('A', "Add friend");
 	Option('R', "Remove friend");
 
-	Line("\nFriends list:");
-	for (int i = 0; i < player->GetFriends().length(); i++)
+	if (!player->GetFriends().isEmpty())
 	{
-		Option(i, player->GetFriends()[i]->GetUsername());
+		Line("\nFriends list:");
+		for (int i = 0; i < player->GetFriends().length(); i++)
+		{
+			Option(i, player->GetFriends()[i]->GetUsername());
+		}
 	}
-	
+	else Line("You dont have any friends yet.");
 }
 
 bool FriendMenu::HandleChoice(char choice)
@@ -27,7 +30,18 @@ bool FriendMenu::HandleChoice(char choice)
 	{
 		case 'A': //Add friend
 		{
-			Question("Enter username");
+			string usernameSearch = Question("Enter username");
+			for (int acc = 0; acc < app->GetAccounts().length(); acc++)
+			{
+				for (int usr = 0; usr < app->GetAccounts()[acc]->GetUsers().length(); usr++)
+				{
+					if (app->GetAccounts()[acc]->GetUsers()[usr]->GetUsername() == usernameSearch)
+					{
+						Player* temp = static_cast<Player*>(app->GetAccounts()[acc]->GetUsers()[usr]);
+						player->AddFriend(temp);
+					}
+				}
+			}
 		} break;
 		case 'R': //Remove friend
 		{
