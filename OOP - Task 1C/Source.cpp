@@ -64,5 +64,5 @@ void main()
 
 	app.Load();
 	MainMenu("VAPOUR", &app);
-	// TODO: app.Save();
+	app.Save();
 }

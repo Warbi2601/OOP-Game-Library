@@ -98,15 +98,43 @@ void Application::LogoutUser()
 	currentUser = nullptr;
 }
 
-/*void Application::Save() {
+void Application::Save() {
 	ofstream fout;
 	fout.open("copy.txt");
 	for (int i = 0; i < GetStore().GetGames().length(); i++) {
+		Game* game = GetStore().GetGames()[i];
 		fout << "GAME" << endl;
-		fout << to_string(i) << endl;
-		fout << 
+		fout << game->GetID() << endl;
+		fout << game->GetName() << endl;
+		fout << game->GetDescription() << endl;
+		fout << game->GetCost() << endl;
+		fout << game->GetRating() << endl;
 	}
-}*/
+
+	for (int i = 0; i < GetAccounts().length(); i++) {
+		Account* account = GetAccounts()[i];
+		fout << "ACCOUNT" << endl;
+		fout << account->GetCreated().ToString(account->GetCreated()) << endl;
+		fout << account->GetEmail() << endl;
+		fout << account->GetPassword() << endl;
+		for (int i = 0; i < account->GetUsers().length(); i++) {
+			Player* user = static_cast<Player*>(account->GetUsers()[i]);
+			fout << "ACCOUNT-USER" << endl;
+			fout << user->GetCreated().ToString(user->GetCreated()) << endl;
+			fout << user->GetUsername() << endl;
+			fout << user->GetPassword() << endl;
+			fout << user->GetCredits() << endl;
+
+			for (int i = 0; i < user->GetLibrary().length(); i++) {
+				LibraryItem* game = user->GetLibrary()[i];
+				fout << "ACCOUNT-USER-GAME" << endl;
+				fout << game->getGame()->GetID() << endl;
+				fout << game->getDate().ToString(game->getDate()) << endl;
+				fout << game->getTimePlayed() << endl;
+			}
+		}
+	}
+}
 
 void Application::Load() {
 	string line;

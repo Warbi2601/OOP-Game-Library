@@ -22,8 +22,8 @@ Date::Date(const Date& date) : day(date.day), month(date.month), year(date.year)
 Date::Date(const string& str)
 {
 	string strYear = str.substr(0, 4);
-	string strMonth = str.substr(5, 2);
-	string strDay = str.substr(8, 2);
+	string strDay = str.substr(5, 2);
+	string strMonth = str.substr(7, 2);
 
 	int dayNum, monthNum, yearNum;
 
