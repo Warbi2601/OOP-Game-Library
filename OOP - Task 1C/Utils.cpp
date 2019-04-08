@@ -49,7 +49,6 @@ int Utils::getRandomNumber(int lower, int upper)
 bool Utils::isUniqueUsername(List<Account*> accounts, std::string a)
 {
 	Utils::ToUpper(a);
-	bool isFound = true;
 
 	for (int i = 0; i < accounts.length(); i++)
 	{
@@ -62,11 +61,9 @@ bool Utils::isUniqueUsername(List<Account*> accounts, std::string a)
 
 			if (userUsername == a)
 			{
-				isFound = false;
 				return false;
 			}
 		}
 	}
-
 	return true;
 }
