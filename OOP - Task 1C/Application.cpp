@@ -134,7 +134,7 @@ void Application::Save() {
 				fout << game->getTimePlayed() << endl;
 			}
 		}
-		for (int i = 0; i < account->GetUsers().length(); i++) {
+		/*for (int i = 0; i < account->GetUsers().length(); i++) {
 			Player* user = static_cast<Player*>(account->GetUsers()[i]);
 			for (int i = 0; i < user->GetFriends().length(); i++) {
 				Player* friends = user->GetFriends()[i];
@@ -142,7 +142,7 @@ void Application::Save() {
 				fout << user->GetUsername << endl;
 				fout << friends->GetUsername << endl;
 			}
-		}
+		}*/
 	}
 }
 
