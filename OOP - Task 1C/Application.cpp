@@ -134,15 +134,17 @@ void Application::Save() {
 				fout << game->getTimePlayed() << endl;
 			}
 		}
-		/*for (int i = 0; i < account->GetUsers().length(); i++) {
+		for (int i = 0; i < account->GetUsers().length(); i++) {
 			Player* user = static_cast<Player*>(account->GetUsers()[i]);
-			for (int i = 0; i < user->GetFriends().length(); i++) {
-				Player* friends = user->GetFriends()[i];
-				fout << "ACCOUNT-USER-FRIEND" << endl;
-				fout << user->GetUsername << endl;
-				fout << friends->GetUsername << endl;
+			if (user->GetFriends().isEmpty() == false) {
+				for (int i = 0; i < user->GetFriends().length(); i++) {
+					Player* friends = user->GetFriends()[i];
+					fout << "ACCOUNT-USER-FRIEND" << endl;
+					fout << user->GetUsername() << endl;
+					fout << friends->GetUsername() << endl;
+				}
 			}
-		}*/
+		}
 	}
 }
 
@@ -228,7 +230,8 @@ void Application::Load() {
 
 					getline(fin, line);
 					double credits = stod(line);
-					u1 = new Player(name, pass, date, credits);
+					List<Player*> friends;
+					u1 = new Player(name, pass, date, credits,friends);
 					GetAccounts().last()->AddUser(u1);
 				}
 				
