@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Utils.h"
 
 // I tried to put this in Utils and declare them as static
 // but he compiler wasn't having any of it -Marcus
@@ -154,18 +155,16 @@ bool Player::RemoveFriend(string friendToDelete)
 
 	Player* player = static_cast<Player*>(this);
 
-	List<Player*> friends = player->GetFriends();
-
-	if (!friends.isEmpty())
+	if (!player->GetFriends().isEmpty())
 	{
-		for (int i = 0; i < friends.length(); i++)
+		for (int i = 0; i < player->GetFriends().length(); i++)
 		{
-			string foundUsername = friends[i]->GetUsername();
+			string foundUsername = player->GetFriends()[i]->GetUsername();
 			Utils::ToUpper(foundUsername);
 
 			if (foundUsername == friendToDelete)
 			{
-				friends.deleteOne(friends[i]);
+				player->GetFriends().deleteOne(player->GetFriends()[i]);
 				return true;
 			}
 		}
