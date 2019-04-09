@@ -100,7 +100,7 @@ void Application::LogoutUser()
 
 void Application::Save() {
 	ofstream fout;
-	fout.open("copy.txt");
+	fout.open("data.txt");
 	for (int i = 0; i < GetStore().GetGames().length(); i++) {
 		Game* game = GetStore().GetGames()[i];
 		fout << "GAME" << endl;
@@ -125,15 +125,19 @@ void Application::Save() {
 			fout << user->GetUsername() << endl;
 			fout << user->GetPassword() << endl;
 			fout << user->GetCredits() << endl;
-
-			for (int i = 0; i < user->GetLibrary().size(); i++) {
-				LibraryItem* game = user->GetLibrary()[i];
-				fout << "ACCOUNT-USER-GAME" << endl;
-				fout << game->getGame()->GetID() << endl;
-				fout << game->getDate().ToString(game->getDate()) << endl;
-				fout << game->getTimePlayed() << endl;
-			}
+			//if (user->GetLibrary().size() == true) {
+				for (int i = 0; i < user->GetLibrary().size(); i++) {
+					LibraryItem* game = user->GetLibrary()[i];
+					fout << "ACCOUNT-USER-GAME" << endl;
+					fout << game->getGame()->GetID() << endl;
+					fout << game->getDate().ToString(game->getDate()) << endl;
+					fout << game->getTimePlayed() << endl;
+				}
+			//}
 		}
+	}
+	for (int i = 0; i < GetAccounts().length(); i++) {
+		Account* account = GetAccounts()[i];
 		for (int i = 0; i < account->GetUsers().length(); i++) {
 			Player* user = static_cast<Player*>(account->GetUsers()[i]);
 			if (user->GetFriends().isEmpty() == false) {
@@ -256,7 +260,12 @@ void Application::Load() {
 
 			if (line == "ACCOUNT-USER-FRIEND") {
 				getline(fin, line);
+				Player* player = Utils::getPlayerByUsername(GetAccounts(),line);
 
+				getline(fin, line);
+				Player* friends = Utils::getPlayerByUsername(GetAccounts(), line);
+
+				player->AddFriend(friends);
 			}
 			
 		}
